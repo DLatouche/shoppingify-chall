@@ -1,0 +1,146 @@
+@import "../../variables";
+
+.Menu {
+    height: 100vh;
+    width: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    .icon {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .logo {
+        padding: 30px 20px;
+        img {
+            width: 42px;
+            &:hover {
+                cursor: pointer;
+                transform: rotate(360deg);
+                transition: transform 1s;
+            }
+        }
+    }
+    .nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        .icon {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            position: relative;
+            margin: 20px 0;
+            padding: 10px 0;
+            svg {
+                margin: auto;
+            }
+            &::before {
+                opacity: 0;
+                position: absolute;
+                top: 2;
+                bottom: 2px;
+                left: 0px;
+                content: " ";
+                display: block;
+                height: 100%;
+                width: 6px;
+                background-color: $primary;
+                border-radius: 0px 4px 4px 0px;
+                transition: opacity 0.4s;
+            }
+            &.selected::before {
+                opacity: 1;
+                content: " ";
+                background-color: $primary;
+                transition: opacity 0.5s;
+            }
+
+            .tooltip {
+                width: 100%;
+                display: flex;
+                position: relative;
+                .tooltipContent {
+                    position: absolute;
+                    transform: translateX(70px);
+                    opacity: 0;
+                    padding: 5px 10px;
+                    font-family: Quicksand;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 15px;
+                    letter-spacing: 0em;
+                    border-radius: 4px;
+                    background-color: $dark;
+                    color: $light;
+                    transition: opacity 0.3s;
+                    &::before {
+                        z-index: -1;
+                        content: "";
+                        position: absolute;
+                        transform: translateX(-80%) translateY(100%);
+                        width: 20px;
+                        height: 5px;
+                        background: $dark;
+                        border-radius: 20px / 5px;
+                    }
+                }
+            }
+            &:hover .tooltip {
+                .tooltipContent {
+                    opacity: 0.9;
+                    transition: opacity 0.3s;
+                }
+            }
+            svg {
+                font-size: 24px;
+                fill: $dark;
+            }
+        }
+    }
+    .actionBottom {
+        padding: 30px 20px;
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $primary;
+            padding: 10px;
+            border-radius: 50%;
+            transition: all 0.3s;
+            &:hover {
+                background-color: adjust-hue($primary, $hueDegree);
+                transition: all 0.3s;
+            }
+            svg {
+                fill: $light;
+                font-size: 24px;
+            }
+            .notifHidden {
+                display: none;
+            }
+            .notif {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 20px;
+                width: 20px;
+                border-radius: 4px;
+                transform: translateX(15px) translateY(-15px);
+                font-size: 12px;
+                color: $light;
+                font-family: Quicksand;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 15px;
+                letter-spacing: 0em;
+                background-color: $red;
+            }
+        }
+    }
+}
