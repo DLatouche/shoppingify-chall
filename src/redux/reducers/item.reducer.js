@@ -1,4 +1,6 @@
-const initialState = []
+import { items } from "../data"
+
+const initialState = items
 
 export const ADD_ITEM_ACTION = "ADD_ITEM_ACTION"
 export const UPDATE_ITEM_ACTION = "UPDATE_ITEM_ACTION"
