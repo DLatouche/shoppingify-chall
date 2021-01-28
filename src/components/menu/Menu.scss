@@ -2,7 +2,8 @@
 
 .Menu {
     height: 100vh;
-    width: 90px;
+    width: 5vw;
+    min-width: 70px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -30,14 +31,13 @@
         width: 100%;
         .icon {
             display: flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
             align-items: center;
             position: relative;
-            margin: 20px 0;
+            margin: 20px 5px;
             padding: 10px 0;
-            svg {
-                margin: auto;
-            }
             &::before {
                 opacity: 0;
                 position: absolute;
@@ -58,16 +58,24 @@
                 background-color: $primary;
                 transition: opacity 0.5s;
             }
-
             .tooltip {
-                width: 100%;
-                display: flex;
                 position: relative;
+                display: inline-block;
+                color: #006080;
+                &:hover .tooltipContent {
+                    visibility: visible;
+                    opacity: 1;
+                }
                 .tooltipContent {
+                    visibility: hidden;
                     position: absolute;
-                    transform: translateX(70px);
+                    text-align: center;
+                    padding: 5px 15px;
+                    border-radius: 6px;
+                    z-index: 1;
                     opacity: 0;
-                    padding: 5px 10px;
+                    transition: opacity 0.5s;
+                    left: 140%;
                     font-family: Quicksand;
                     font-size: 12px;
                     font-style: normal;
@@ -77,23 +85,16 @@
                     border-radius: 4px;
                     background-color: $dark;
                     color: $light;
-                    transition: opacity 0.3s;
-                    &::before {
-                        z-index: -1;
+                    &::after {
                         content: "";
                         position: absolute;
-                        transform: translateX(-80%) translateY(100%);
-                        width: 20px;
-                        height: 5px;
-                        background: $dark;
-                        border-radius: 20px / 5px;
+                        top: 50%;
+                        right: 100%;
+                        margin-top: -5px;
+                        border-width: 5px;
+                        border-style: solid;
+                        border-color: transparent #555 transparent transparent;
                     }
-                }
-            }
-            &:hover .tooltip {
-                .tooltipContent {
-                    opacity: 0.9;
-                    transition: opacity 0.3s;
                 }
             }
             svg {
