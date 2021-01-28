@@ -1,9 +1,10 @@
 
 import React from "react"
+import './Aside.scss';
 
 const Aside = () => {
     return (
-        <div>Aside</div>
+        <div className="Aside">Aside</div>
     )
 }
 
