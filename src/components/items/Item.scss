@@ -3,16 +3,16 @@
 .item {
     background: $light;
     width: 180px;
-    box-shadow: $box-shadow-2;
+    box-shadow: $box-shadow-1;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 15px;
-    transition: all 0.5s;
+    transition: all 0.3s;
     &:hover {
         cursor: pointer;
-        box-shadow: $box-shadow-3;
+        box-shadow: $box-shadow-2;
     }
     .item__name {
         font-family: Quicksand;

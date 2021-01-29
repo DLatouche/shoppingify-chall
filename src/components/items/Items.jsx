@@ -35,6 +35,7 @@ const categoryView = ({ category }) => {
     })
     return (<div className="items__category">
         <p className="items__category__name">{category.name}</p>
+        {items.length === 0 ? <p className="items_category_noItem">No item in this category</p>:null}
         <div className="items__category__items">
             {itemsView}
         </div>

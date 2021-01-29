@@ -6,6 +6,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin: 0 0 20px 0;
+
         .items__intro {
             font-family: Quicksand;
             font-size: 26px;
@@ -22,18 +24,31 @@
                 line-height: 33px;
                 letter-spacing: 0em;
                 text-align: left;
-
                 color: $primary;
             }
         }
     }
     .items__categories {
-        .items__categories {
-            .items__category {
-                .items__category__name {
-                }
-                .items__category__items {
-                }
+        .items__category {
+            margin: 50px 0;
+            .items__category__name {
+                margin: 20px 0;
+            }
+            .items_category_noItem {
+                padding-left: 10px;
+                color: $dark-light;
+                font-style: italic;
+                font-family: Quicksand;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 18px;
+                letter-spacing: 0em;
+            }
+            .items__category__items {
+                display: grid;
+                grid-gap: 20px;
+                grid-template-columns: repeat(auto-fit, 180px);
+                align-items: flex-start;
             }
         }
     }
