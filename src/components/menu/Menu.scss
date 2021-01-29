@@ -1,6 +1,6 @@
 @import "../../variables";
 
-.Menu {
+.menu {
     height: 100vh;
     width: 5vw;
     min-width: 70px;
@@ -8,12 +8,17 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    .icon {
+    .menu__icon {
+        font-size: 24px;
+        color: $dark;
         &:hover {
             cursor: pointer;
         }
+        &--light{
+            color: $light;
+        }
     }
-    .logo {
+    .menu__logo {
         padding: 30px 20px;
         img {
             width: 42px;
@@ -24,12 +29,12 @@
             }
         }
     }
-    .nav {
+    .menu__nav {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 100%;
-        .icon {
+        .menu__nav__icons {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -52,21 +57,21 @@
                 border-radius: 0px 4px 4px 0px;
                 transition: opacity 0.4s;
             }
-            &.selected::before {
+            &.menu__nav--selected::before {
                 opacity: 1;
                 content: " ";
                 background-color: $primary;
                 transition: opacity 0.5s;
             }
-            .tooltip {
+            .menu__tooltip {
                 position: relative;
                 display: inline-block;
                 color: #006080;
-                &:hover .tooltipContent {
+                &:hover .menu__tooltip__content {
                     visibility: visible;
                     opacity: 1;
                 }
-                .tooltipContent {
+                .menu__tooltip__content {
                     visibility: hidden;
                     position: absolute;
                     text-align: center;
@@ -97,15 +102,11 @@
                     }
                 }
             }
-            svg {
-                font-size: 24px;
-                fill: $dark;
-            }
         }
     }
-    .actionBottom {
+    .menu__action {
         padding: 30px 20px;
-        .icon {
+        .menu__action__icon {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -117,14 +118,11 @@
                 background-color: adjust-hue($primary, $hueDegree);
                 transition: all 0.3s;
             }
-            svg {
-                fill: $light;
-                font-size: 24px;
-            }
-            .notifHidden {
+            
+            .menu__action__notif--hidden {
                 display: none;
             }
-            .notif {
+            .menu__action__notif {
                 position: absolute;
                 display: flex;
                 align-items: center;

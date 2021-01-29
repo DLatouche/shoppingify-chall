@@ -20,48 +20,48 @@ const Menu = () => {
 
     }
     return (
-        <div className="Menu">
-            <div className="logo">
+        <div className="menu">
+            <div className="menu__logo">
                 <img src={logo} alt="logo"
                     onClick={() => {
                         go("/")
                     }} />
             </div>
-            <div className="nav">
-                <div className={selected === 1 ? "icon selected" : "icon"}
+            <div className="menu__nav">
+                <div className={selected === 1 ? "menu__nav__icons menu__nav--selected" : "menu__nav__icons"}
                     onClick={() => {
                         go("/")
                     }}>
-                    <div className="tooltip">
-                        <ListIcon />
-                        <span className="tooltipContent">items</span>
+                    <div className="menu__tooltip">
+                        <ListIcon className="menu__icon" />
+                        <span className="menu__tooltip__content">items</span>
                     </div>
                 </div>
-                <div className={selected === 2 ? "icon selected" : "icon"}
+                <div className={selected === 2 ? "menu__nav__icons menu__nav--selected" : "menu__nav__icons"}
                     onClick={() => {
                         go("/history")
                     }}
                 >
-                    <div className="tooltip">
-                        <HistoryIcon />
-                        <span className="tooltipContent">history</span>
+                    <div className="menu__tooltip">
+                        <HistoryIcon className="menu__icon" />
+                        <span className="menu__tooltip__content">history</span>
                     </div>
                 </div>
-                <div className={selected === 3 ? "icon selected" : "icon"}
+                <div className={selected === 3 ? "menu__nav__icons menu__nav--selected" : "menu__nav__icons"}
                     onClick={() => {
                         go("/statistics")
                     }}
                 >
-                    <div className="tooltip">
-                        <PollOutlinedIcon />
-                        <span className="tooltipContent">statistics</span>
+                    <div className="menu__tooltip">
+                        <PollOutlinedIcon className="menu__icon" />
+                        <span className="menu__tooltip__content">statistics</span>
                     </div>
                 </div>
             </div>
-            <div className="actionBottom">
-                <div className="icon">
-                    <span className={number === 0 ? "notifHidden" : "notif"}>{number}</span>
-                    <LocalGroceryStoreOutlinedIcon
+            <div className="menu__action">
+                <div className="menu__action__icon">
+                    <span className={number === 0 ? "menu__action__notif--hidden" : "menu__action__notif"}>{number}</span>
+                    <LocalGroceryStoreOutlinedIcon className="menu__icon menu__icon--light"
                         onClick={() => {
 
                         }}
