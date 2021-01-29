@@ -1,0 +1,40 @@
+@import "../../variables";
+
+.items {
+    padding: 30px 50px;
+    .items__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .items__intro {
+            font-family: Quicksand;
+            font-size: 26px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 33px;
+            letter-spacing: 0em;
+            padding-right: 30px;
+            .items__intro__word {
+                font-family: Quicksand;
+                font-size: 26px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 33px;
+                letter-spacing: 0em;
+                text-align: left;
+
+                color: $primary;
+            }
+        }
+    }
+    .items__categories {
+        .items__categories {
+            .items__category {
+                .items__category__name {
+                }
+                .items__category__items {
+                }
+            }
+        }
+    }
+}
