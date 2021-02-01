@@ -1,0 +1,97 @@
+@import "../../../../variables";
+
+.itemList {
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .itemList__name {
+        font-family: Quicksand;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 23px;
+        letter-spacing: 0em;
+        color: $black;
+    }
+    .ItemList__button {
+        height: 46px;
+        display: flex;
+        align-items: center;
+        transition: all 0.5s;
+        .ItemList__button__quantity {
+            color: $primary;
+            font-family: Quicksand;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 15px;
+            letter-spacing: 0em;
+
+            border: 2px solid $primary;
+            border-radius: 24px;
+            width: 68px;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            &:hover {
+                cursor: pointer;
+            }
+            .ItemList__button__quantity_pcs {
+                font-family: Quicksand;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 15px;
+                letter-spacing: 0em;
+                color: $primary;
+                padding-left: 2px;
+            }
+        }
+        .ItemList__button__icon {
+            transform: scale(0);
+            color: $primary;
+            font-size: 24px;
+            &:hover {
+                cursor: pointer;
+            }
+            &--delete {
+                background-color: $primary;
+                color: $light;
+                border-radius: 12px;
+                width: 35px;
+                padding: 7px;
+                height: 100%;
+                transition: all 0.5s;
+                &:hover {
+                    background-color: adjust-hue($primary, $hueDegree);
+                }
+            }
+
+            &--add {
+                margin: 0px 7px;
+                transition: all 0.5s;
+                &:hover {
+                    cursor: pointer;
+                    transform: scale($sizeScale);
+                }
+            }
+            &--remove {
+                margin: 0px 7px;
+                transition: all 0.5s;
+                &:hover {
+                    cursor: pointer;
+                    transform: scale($sizeScale);
+                }
+            }
+        }
+        &--editing {
+            height: 46px;
+            background-color: $light;
+            border-radius: 12px;
+            .ItemList__button__icon {
+                transform: scale(1);
+            }
+        }
+    }
+}

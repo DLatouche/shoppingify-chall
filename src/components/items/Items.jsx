@@ -10,7 +10,6 @@ import ItemStore from "./Item"
 import './Items.scss'
 
 const Items = ({ items, onDeleteMulti, categoriesWithFruits, setAside }) => {
-    console.log("Items.jsx -> 5: items", items)
     const onSearch = (list) => {
         console.log("Items.jsx -> 12: list", list)
     }
@@ -63,7 +62,6 @@ const categoryView = ({ category }) => {
 
 export const ItemsStore = () => {
     const items = useSelector(itemsSortedSelector)
-    console.log("%cItems.jsx -> 38 RED: items", 'background: #f44336; color:#FFFFFF', items)
 
     const categories = useSelector(categoriesSortedSelector)
     //const itemsSortedByCategories = useSelector(itemsSortedByCategorySelector)
@@ -88,7 +86,6 @@ export const ItemsStore = () => {
         categoriesWithFruitsMap[category.id] = { ...category, items: [] }
     })
     items.forEach((item) => {
-        console.log("Items.jsx -> 54: item", item.category)
         categoriesWithFruitsMap[item.category.id].items.push(item)
     })
     Object.keys(categoriesWithFruitsMap).forEach(key => categoriesWithFruits.push(categoriesWithFruitsMap[key]))

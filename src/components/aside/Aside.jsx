@@ -8,7 +8,6 @@ import AsideDetailsStore from "./asideDetails/AsideDetails";
 import AsideListStore from "./asideList/AsideList";
 
 const Aside = ({aside}) => {
-    console.log("Aside.jsx -> 11: aside", aside  )
     return (
         <div className="aside">
 

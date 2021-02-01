@@ -4,10 +4,8 @@ import './InputSearch.scss';
 import SearchIcon from '@material-ui/icons/Search';
 
 const InputSearch = ({list, onSearch}) => {
-    console.log("InputSearch.jsx -> 6: onSearch", onSearch  )
     const onChange = (e) => {
         let value = e.target.value
-        console.log("InputSearch.jsx -> 9: onSearch", onSearch  )
         onSearch(list)
     }
 

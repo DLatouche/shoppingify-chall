@@ -1,0 +1,87 @@
+@import "../../../../variables";
+
+.inputName {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    height: 46px;
+    padding: 0 10px;
+    transition: all 0.3s;
+    .inputName__input {
+        border: none;
+        background-color: transparent;
+        font-family: Quicksand;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 30px;
+        letter-spacing: 0em;
+        cursor: default;
+        width: 80%;
+    }
+    .inputName__icon {
+        color: $dark;
+        &:hover {
+            cursor: pointer;
+        }
+        &--edit {
+            transition: all 0.5s;
+            &:hover {
+                animation: write 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+                transform: scale($sizeScale);
+            }
+        }
+        &--validate {
+            transform: scale(0);
+        }
+        &--cancel {
+            transform: scale(0);
+        }
+    }
+
+    &--editing {
+        background-color: $light;
+        height: 46px;
+        border-radius: 12px;
+
+        .inputName__icon {
+            &--edit {
+                transform: scale(0);
+            }
+            &--validate {
+                transform: scale(1);
+                transition: all 0.5s;
+                &:hover {
+                    transform: scale($sizeScale);
+                }
+            }
+            &--cancel {
+                transform: scale(1);
+                transition: all 0.5s;
+                &:hover {
+                    transform: scale($sizeScale);
+                }
+            }
+        }
+    }
+}
+
+@keyframes write {
+    0% {
+        transform: rotate(4deg) scale(1);
+    }
+    33% {
+        transform: rotate(-4deg) scale($sizeScale);
+    }
+
+    66% {
+        transform: rotate(4deg) scale($sizeScale);
+    }
+
+    99% {
+        transform: rotate(-4deg) scale($sizeScale);
+    }
+    100% {
+        transform: rotate(1) scale($sizeScale);
+    }
+}

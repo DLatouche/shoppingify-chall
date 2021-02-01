@@ -3,8 +3,9 @@
 .asideList {
     background-color: #fff0de;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
 
     .asideList__header {
         background-color: $secondary;
@@ -37,5 +38,34 @@
                 align-self: start;
             }
         }
+    }
+
+    .asideList__body {
+            width: 100%;
+            padding: 0 40px;
+            overflow: auto;
+            .asideList__body__name {
+        }
+        .asideList__body__list {
+            width: 100%;
+            .asideList__body__list__category {
+                padding-top: 30px;
+                .asideList__body__list__category__name {
+                    font-family: Quicksand;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 18px;
+                    letter-spacing: 0em;
+                    color: #828282;
+                    margin: 10px 0;
+                }
+                .asideList__body__list__category_items {
+                }
+            }
+        }
+    }
+
+    .asideList__footer {
     }
 }

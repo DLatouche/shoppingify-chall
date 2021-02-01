@@ -12,7 +12,16 @@ const items = [
     { id: "_9", name: "Roquefort", category: { ...categories[2] }, note: "", image: "https://dam.savencia-fromagedairy.com/m/72f083ba0f5a5202/LA02_768x400-LA02_38_roquefort_V2_3.jpg" },
 ]
 
-const lists = [{ id: "_1", name: "Sample list", state: "completing", date: new Date("2021-01-10"), items: [{ ...items[0], quantity: 2 }] }]
+const lists = [{
+    id: "_1", name: "Sample list", state: "editing", date: new Date("2021-01-10"),
+    categories: [
+        { id: "_1", name: "Fruit", items: [{ ...items[0], quantity: 2 }, { ...items[1], quantity: 1 }, { ...items[2], quantity: 3 }, { ...items[4], quantity: 5 }] },
+        { id: "_2", name: "Vegetable", items: [{ ...items[6], quantity: 2 }] },
+        { id: "_3", name: "Dairy", items: [{ ...items[8], quantity: 1 }] },
+    ]
+
+},
+]
 // stateList: completing, editing, cancelled
 
 export { categories, items, lists }
