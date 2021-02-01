@@ -1,0 +1,41 @@
+@import "../../../variables";
+
+.asideList {
+    background-color: #fff0de;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    .asideList__header {
+        background-color: $secondary;
+        border-radius: 24px;
+        width: 300px;
+        height: 130px;
+        margin-top: 40px;
+        display: flex;
+        position: relative;
+        .asideList__img {
+            position: absolute;
+            bottom: 20px;
+            left: 10px;
+        }
+        .asideList__header__container {
+            padding: 20px 20px 20px 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .asideList__header__intro {
+                color: $light;
+                font-family: Quicksand;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 20px;
+                letter-spacing: 0em;
+            }
+            .asideList__header__button {
+                align-self: start;
+            }
+        }
+    }
+}
