@@ -1,0 +1,74 @@
+@import "../../../variables";
+
+
+.input {
+    .input__name {
+        font-family: Quicksand;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 18px;
+        letter-spacing: 0em;
+        color: $dark;
+        margin: 10px 0 5px 0;
+        transition: all 0.3s;
+    }
+    .input__container {
+        border: 2px solid #bdbdbd;
+        padding: 17px 20px;
+        transition: all 0.3s;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s;
+
+        .input__container__input {
+            background-color: transparent;
+            font-family: Quicksand;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 30px;
+            letter-spacing: 0em;
+            border: none;
+            width: 100%;
+            &::placeholder {
+                color: $dark-light;
+            }
+        }
+        position: relative;
+        .input__container__container__icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .input__container__icon {
+            z-index: 10;
+            transition: all 0.3s;
+            color: #c1c1c4;
+            transform: scale(0);
+        }
+    }
+    &--focused {
+        .input__name{
+            color: $primary;
+        }
+        .input__container {
+            border: 2px solid $primary;
+            .input__container__icon {
+                transform: scale($sizeScale);
+
+                &:hover {
+                    cursor: pointer;
+                    color: $dark;
+                    transform: scale($sizeScale);
+                }
+            }
+        }
+    }
+    &--multiline {
+        .input__container__input {
+            resize: none;
+        }
+    }
+}

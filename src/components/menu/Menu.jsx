@@ -5,7 +5,6 @@ import ListIcon from '@material-ui/icons/List';
 import PollOutlinedIcon from '@material-ui/icons/PollOutlined';
 import LocalGroceryStoreOutlinedIcon from '@material-ui/icons/LocalGroceryStoreOutlined';
 import logo from './logo.svg'
-import createPalette from '@material-ui/core/styles/createPalette';
 import { useState } from 'react';
 const Menu = () => {
     const [selected, setSelected] = useState(1)

@@ -1,9 +1,8 @@
 
 import React, { useState } from "react"
-import './Button.scss';
+import './BigButton.scss';
 
-
-const Button = ({ variant, onClick, children, className}) => {
+const BigButton = ({ variant, onClick, children, className }) => {
     const [state, setState] = useState({
         showRipple: false,
         combinedSpanStyles: {},
@@ -36,7 +35,7 @@ const Button = ({ variant, onClick, children, className}) => {
         if (spanArray && spanArray.length > 0) {
             return (
                 spanArray.map((key, index) => {
-                    return <span className="button__ripple__content" key={'spanCount_' + index} style={{ ...combinedSpanStyles[key] }}></span>
+                    return <span className="bigButton__ripple__content" key={'spanCount_' + index} style={{ ...combinedSpanStyles[key] }}></span>
                 })
             )
         } else {
@@ -51,7 +50,7 @@ const Button = ({ variant, onClick, children, className}) => {
         const y = e.pageY - pos.y - (size / 2);
 
         const styleSizing = { top: y + 'px', left: x + 'px', height: size + 'px', width: size + 'px' };
-        const combinedSpanStyles = { ...styleSizing};
+        const combinedSpanStyles = { ...styleSizing };
         const count = state.count + 1;
         setState({
             combinedSpanStyles: { ...state.combinedSpanStyles, [count]: combinedSpanStyles },
@@ -61,12 +60,12 @@ const Button = ({ variant, onClick, children, className}) => {
     }
 
     return (
-        <button className={"button button--" + variant + " "+className} onClick={onClick}>{children}
-            <div className="button__ripple" onMouseDown={showRipple} onMouseUp={callCleanUp(cleanUp, 2000)}>
+        <button className={"bigButton bigButton--" + variant + " " + className} onClick={onClick}>{children}
+            <div className="bigButton__ripple" onMouseDown={showRipple} onMouseUp={callCleanUp(cleanUp, 2000)}>
                 {renderRippleSpan()}
             </div>
         </button>
     )
 }
 
-export default Button
+export default BigButton

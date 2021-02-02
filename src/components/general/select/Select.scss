@@ -1,0 +1,33 @@
+@import "../../../variables";
+
+.select {
+    max-height: 170px;
+    background-color: $light;
+    border-radius: 12px;
+    border: 2px solid #bdbdbd;
+    overflow: auto;
+    transition: all 0.3s;
+    &--focused {
+        border: 2px solid $primary;
+    }
+    .select__item {
+        font-family: Quicksand;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 23px;
+        letter-spacing: 0em;
+        color: #828282;
+        padding: 10px 20px;
+        margin: 5px 10px;
+        border-radius: 12px;
+        transition: all 0.3s;
+        &:hover {
+            cursor: pointer;
+        }
+        &--selected {
+            color: #34333a;
+            background-color: #f2f2f2;
+        }
+    }
+}

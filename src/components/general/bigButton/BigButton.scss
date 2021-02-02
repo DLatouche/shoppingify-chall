@@ -1,19 +1,18 @@
 @import "../../../variables";
 
-.button {
+.bigButton {
     background-color: $primary;
     color: $light;
     font-family: Quicksand;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
-    line-height: 18px;
+    line-height: 20px;
     letter-spacing: 0em;
     text-transform: uppercase;
     border: none;
     border-radius: 12px;
-    padding: 10px 30px;
-    box-shadow: $box-shadow-1;
+    padding: 25px 30px;
 
     &:hover {
         background: darken($primary, $hueDegree);
@@ -22,13 +21,13 @@
     position: relative;
     overflow: hidden;
 
-    .button__ripple {
+    .bigButton__ripple {
         position: absolute;
         top: 0;
         right: 0;
         bottom: 0;
         left: 0;
-        .button__ripple__content {
+        .bigButton__ripple__content {
             transform: scale(0);
             border-radius: 100%;
             position: absolute;
@@ -44,7 +43,7 @@
         &:hover {
             background: darken($light, $hueDegree);
         }
-        .button__ripple .button__ripple__content {
+        .bigButton__ripple .bigButton__ripple__content {
             background-color: $dark;
         }
     }
@@ -54,11 +53,10 @@
         &:hover {
             background: darken($light, $hueDegree);
         }
-        .button__ripple .button__ripple__content {
+        .bigButton__ripple .bigButton__ripple__content {
             background-color: $dark;
         }
     }
-    
 }
 
 @keyframes ripple {
