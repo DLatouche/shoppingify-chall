@@ -9,7 +9,6 @@ import ItemListStore from "./itemList/ItemList";
 import InputNameStore from "./inputName/InputName";
 import { setAsideAction } from "../../../redux/actions/aside.action";
 const AsideList = ({ className, list, setAside }) => {
-    console.log("AsideList.jsx -> 9: list", list)
     return (
         <div className={className + " asideList"}>
             <div className="asideList__header">
@@ -26,7 +25,6 @@ const AsideList = ({ className, list, setAside }) => {
                 </div>
                 <div className="asideList__body__list">
                     {list.categories.map(category => {
-                        console.log("AsideList.jsx -> 24: category", category)
                         return (
                             <div key={category.id} className="asideList__body__list__category">
                                 <p className="asideList__body__list__category__name">{category.name}</p>

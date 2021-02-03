@@ -1,16 +1,16 @@
 
 import React, { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { setAsideAction } from "../../redux/actions/aside.action"
-import { deleteMultiItemAction } from "../../redux/actions/item.action"
+import { addItemToListAction } from "../../redux/actions/list.action"
 import { categoriesSortedSelector } from "../../redux/selectors/categories.selector"
 import { itemsSortedByCategorySelector, itemsSortedSelector } from "../../redux/selectors/items.selector"
+import { currentListSelector } from "../../redux/selectors/lists.selector"
 import { include } from "../../utilities/helper"
 import InputSearch from "../general/search/InputSearch"
 import ItemStore from "./Item"
 import './Items.scss'
 
-const Items = ({ items, onDeleteMulti, categoriesWithFruits, setAside }) => {
+const Items = ({ items, categoriesWithFruits, addToCurrentList }) => {
 
     const [itemsToShow, setItemsToShow] = useState(items)
 
@@ -19,45 +19,31 @@ const Items = ({ items, onDeleteMulti, categoriesWithFruits, setAside }) => {
         setItemsToShow(list)
     }
 
-    let aside = 0
-    const changeAside = () => {
-        aside++
-        console.log("Items.jsx -> 21: aside", aside)
-        let nameAside = "LIST"
-        if (aside === 1) {
-            nameAside = "DETAILS"
-        }
-        else if (aside === 2) {
-            nameAside = "ADD_ITEM"
-        } else {
-            aside = 0
-        }
-        console.log("Items.jsx -> 30: aside, nameAside", aside, nameAside)
-
-        setAside(nameAside)
+    const addToList = async (item) => {
+        let result = await addToCurrentList(item)
+        if (result.status === "FAILED") console.log("%cItems.jsx -> 24 ERROR: result.message", 'background: #FF0000; color:#FFFFFF', result.message)
     }
 
     return (
         <div className="items">
             <div className="items__header">
-                <p className="items__intro"><em className="items__intro__word" onClick={changeAside}>Shoppingify</em> allows you take your shopping list wherever you go</p>
+                <p className="items__intro"><em className="items__intro__word">Shoppingify</em> allows you take your shopping list wherever you go</p>
                 <InputSearch onSearch={onSearch} list={items} />
             </div>
             <div className="items__categories">
-                {categoriesWithFruits.map(category => categoryView({ category, itemsToShow }))}
+                {categoriesWithFruits.map(category => categoryView({ category, itemsToShow, addToList }))}
             </div>
         </div>
     )
 }
 
-const categoryView = ({ category, itemsToShow }) => {
-    console.log("Items.jsx -> 53: itemsToShow", itemsToShow)
+const categoryView = ({ category, itemsToShow, addToList }) => {
     let { items } = category
     let itemsView = items.map(item => {
         if (include(itemsToShow, (itemList) => {
             return item.id === itemList.id
         })) {
-            return <ItemStore key={item.id} item={item} />
+            return <ItemStore key={item.id} item={item} add={addToList} />
         }
     })
     return (<div key={category.id} className="items__category">
@@ -72,24 +58,18 @@ const categoryView = ({ category, itemsToShow }) => {
 
 export const ItemsStore = () => {
     const items = useSelector(itemsSortedSelector)
-
     const categories = useSelector(categoriesSortedSelector)
-    //const itemsSortedByCategories = useSelector(itemsSortedByCategorySelector)
+    const currentList = useSelector(currentListSelector)
+
     const dispatch = useDispatch()
-    const onDeleteMulti = useCallback(
-        (ids) => {
-            return dispatch(deleteMultiItemAction(ids))
+    const addToCurrentList = useCallback(
+        (item) => {
+            return dispatch(addItemToListAction({ item, list: currentList[0] }))
         },
         [dispatch]
     )
 
-    const setAside = useCallback(
-        (aside) => {
-            return dispatch(setAsideAction(aside))
-        },
-        [dispatch]
-    )
-
+    // List of categories with their items
     let categoriesWithFruits = []
     let categoriesWithFruitsMap = {}
     categories.forEach(category => {
@@ -102,7 +82,7 @@ export const ItemsStore = () => {
 
 
     return (
-        <Items items={items} categoriesWithFruits={categoriesWithFruits} onDeleteMulti={onDeleteMulti} setAside={setAside} />
+        <Items items={items} categoriesWithFruits={categoriesWithFruits} addToCurrentList={addToCurrentList} />
     )
 }
 

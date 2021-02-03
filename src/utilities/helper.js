@@ -9,4 +9,12 @@ const include = (list, condition) => {
     return false
 }
 
-export { getId, include }
+const getInclude = (list, condition) => {
+    let i = 0
+    while (i < list.length) {
+        if (condition(list[i])) return i
+        i++
+    }
+    return -1
+}
+export { getId, include, getInclude }
