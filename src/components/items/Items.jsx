@@ -5,29 +5,34 @@ import { setAsideAction } from "../../redux/actions/aside.action"
 import { deleteMultiItemAction } from "../../redux/actions/item.action"
 import { categoriesSortedSelector } from "../../redux/selectors/categories.selector"
 import { itemsSortedByCategorySelector, itemsSortedSelector } from "../../redux/selectors/items.selector"
+import { include } from "../../utilities/helper"
 import InputSearch from "../general/search/InputSearch"
 import ItemStore from "./Item"
 import './Items.scss'
 
 const Items = ({ items, onDeleteMulti, categoriesWithFruits, setAside }) => {
-    const onSearch = (list) => {
-        console.log("Items.jsx -> 12: list", list)
+
+    const [itemsToShow, setItemsToShow] = useState(items)
+
+    const onSearch = (value) => {
+        let list = items.filter((item) => item.name.toLowerCase().includes(value.toLowerCase()))
+        setItemsToShow(list)
     }
 
     let aside = 0
     const changeAside = () => {
         aside++
-        console.log("Items.jsx -> 21: aside", aside  )
+        console.log("Items.jsx -> 21: aside", aside)
         let nameAside = "LIST"
         if (aside === 1) {
             nameAside = "DETAILS"
         }
         else if (aside === 2) {
-            nameAside="ADD_ITEM"
+            nameAside = "ADD_ITEM"
         } else {
             aside = 0
         }
-        console.log("Items.jsx -> 30: aside, nameAside", aside, nameAside  )
+        console.log("Items.jsx -> 30: aside, nameAside", aside, nameAside)
 
         setAside(nameAside)
     }
@@ -39,18 +44,23 @@ const Items = ({ items, onDeleteMulti, categoriesWithFruits, setAside }) => {
                 <InputSearch onSearch={onSearch} list={items} />
             </div>
             <div className="items__categories">
-                {categoriesWithFruits.map(category => categoryView({ category }))}
+                {categoriesWithFruits.map(category => categoryView({ category, itemsToShow }))}
             </div>
         </div>
     )
 }
 
-const categoryView = ({ category }) => {
+const categoryView = ({ category, itemsToShow }) => {
+    console.log("Items.jsx -> 53: itemsToShow", itemsToShow)
     let { items } = category
     let itemsView = items.map(item => {
-        return <ItemStore key={item.id} item={item} />
+        if (include(itemsToShow, (itemList) => {
+            return item.id === itemList.id
+        })) {
+            return <ItemStore key={item.id} item={item} />
+        }
     })
-    return (<div  key={category.id} className="items__category">
+    return (<div key={category.id} className="items__category">
         <p className="items__category__name">{category.name}</p>
         {items.length === 0 ? <p className="items_category_noItem">No item in this category</p> : null}
         <div className="items__category__items">

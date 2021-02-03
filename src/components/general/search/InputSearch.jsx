@@ -3,10 +3,10 @@ import React from "react"
 import './InputSearch.scss';
 import SearchIcon from '@material-ui/icons/Search';
 
-const InputSearch = ({list, onSearch}) => {
+const InputSearch = ({onSearch}) => {
     const onChange = (e) => {
         let value = e.target.value
-        onSearch(list)
+        onSearch(value)
     }
 
     return (
