@@ -1,6 +1,7 @@
 
 import React, { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { setItems } from "../../redux/actions/item.action"
 import { addItemToListAction } from "../../redux/actions/list.action"
 import { categoriesSortedSelector } from "../../redux/selectors/categories.selector"
 import { itemsSortedByCategorySelector, itemsSortedSelector } from "../../redux/selectors/items.selector"
@@ -13,7 +14,9 @@ import './Items.scss'
 const Items = ({ items, categoriesWithFruits, addToCurrentList }) => {
 
     const [itemsToShow, setItemsToShow] = useState(items)
-
+    useEffect(()=>{
+        setItemsToShow(items)
+    }, [items])
     const onSearch = (value) => {
         let list = items.filter((item) => item.name.toLowerCase().includes(value.toLowerCase()))
         setItemsToShow(list)
@@ -31,23 +34,23 @@ const Items = ({ items, categoriesWithFruits, addToCurrentList }) => {
                 <InputSearch onSearch={onSearch} list={items} />
             </div>
             <div className="items__categories">
-                {categoriesWithFruits.map(category => categoryView({ category, itemsToShow, addToList }))}
+                {categoriesWithFruits.map(category => <CategoryView key={category.id+"c"} category={category} itemsToShow={itemsToShow} addToList={addToList} />)}
             </div>
         </div>
     )
 }
 
-const categoryView = ({ category, itemsToShow, addToList }) => {
+const CategoryView = ({ category, itemsToShow, addToList }) => {
     let { items } = category
     let itemsView = items.map(item => {
         if (include(itemsToShow, (itemList) => {
             return item.id === itemList.id
         })) {
-            return <ItemStore key={item.id} item={item} add={addToList} />
+            return <ItemStore key={item.id+"i"} item={item} add={addToList} />
         }
     })
-    return (<div key={category.id} className="items__category">
-        <p className="items__category__name">{category.name}</p>
+    return (<div className="items__category">
+        <p className="items__category__name">{category.name + " ("+items.length+")"}</p>
         {items.length === 0 ? <p className="items_category_noItem">No item in this category</p> : null}
         <div className="items__category__items">
             {itemsView}

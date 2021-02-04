@@ -11,7 +11,7 @@ export const SET_ITEMS_ACTION = "SET_ITEMS_ACTION"
 export function itemsReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_ITEM_ACTION:
-            return [...state, { ...action.payload }]
+            return[...state, { ...action.payload }]
         case SET_ITEMS_ACTION:
             return [...action.payload]
         case UPDATE_ITEM_ACTION:

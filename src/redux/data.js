@@ -1,4 +1,4 @@
-const categories = [{ id: "_1", name: "Fruit" }, { id: "_2", name: "Vegetable" }, { id: "_3", name: "Dairy" }, { id: "_4", name: "Meat and fish" }]
+const categories = [{ id: "_1c", name: "Fruit" }, { id: "_2c", name: "Vegetable" }, { id: "_3c", name: "Dairy" }, { id: "_4c", name: "Meat and fish" }]
 
 const items = [
     { id: "_1", name: "Avocado", category: { ...categories[0] }, note: "", image: "https://solidstarts.com/wp-content/uploads/introducing-avocado-to-babies.jpg" },
@@ -13,11 +13,11 @@ const items = [
 ]
 
 const lists = [{
-    id: "_1", name: "Sample list", state: "editing", date: new Date("2021-01-10"),
+    id: "_1l", name: "Sample list", state: "editing", date: new Date("2021-01-10"),
     categories: [
-        { id: "_1", name: "Fruit", items: [{ ...items[0], quantity: 2 }, { ...items[1], quantity: 1 }, { ...items[2], quantity: 3 }, { ...items[4], quantity: 5 }] },
-        { id: "_2", name: "Vegetable", items: [{ ...items[6], quantity: 2 }] },
-        { id: "_3", name: "Dairy", items: [{ ...items[8], quantity: 1 }] },
+        { id: "_1c", name: "Fruit", items: [{ ...items[0], quantity: 2 }, { ...items[1], quantity: 1 }, { ...items[2], quantity: 3 }, { ...items[4], quantity: 5 }] },
+        { id: "_2c", name: "Vegetable", items: [{ ...items[6], quantity: 2 }] },
+        { id: "_3c", name: "Dairy", items: [{ ...items[8], quantity: 1 }] },
     ]
 
 },

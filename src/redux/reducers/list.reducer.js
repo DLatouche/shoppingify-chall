@@ -12,7 +12,7 @@ export function listsReducer(state = initialState, action) {
         case ADD_ITEM_TO_LIST:
             return state.map((list) => {
                 if (list.id === action.payload.list.id) {
-                    return { ...list, ...action.payload }
+                    return { ...list, ...action.payload.list }
                 } else {
                     return list
                 }

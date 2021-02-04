@@ -14,7 +14,10 @@ export const addListAction = (list) => async (dispatch) => {
 
 
 export const addItemToListAction = ({ item, list }) => async (dispatch) => {
+    // check if the item category is already in the list
     let indexCategory = getInclude(list.categories, category => item.category.id === category.id)
+
+    // category is in the list
     if (indexCategory >= 0) {
         let category = list.categories[indexCategory]
         let indexItem = getInclude(category.items, listItem => item.id === listItem.id)
@@ -33,9 +36,16 @@ export const addItemToListAction = ({ item, list }) => async (dispatch) => {
             })
             return { data: list, status: "OK", message: "Item is already in the list." }
         }
+
+        // category isn't in the list
     } else {
-        list.categories.push({ ...item.category })
+
+        // add the category
+        list.categories.push({ ...item.category, items: [] })
+
+        // add the item into category
         list.categories[list.categories.length - 1].items.push({ ...item, quantity: 1 })
+
         dispatch({
             type: ADD_ITEM_TO_LIST,
             payload: { item, list },

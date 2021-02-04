@@ -7,8 +7,8 @@ import {
 	UPDATE_ITEM_ACTION,
 } from "../reducers/item.reducer"
 
-export const addItemAction = (item) => async (dispatch) => {
-	let newItem = {id: getId(), item}
+export const addItemAction = ({item}) => async (dispatch) => {
+	let newItem = {...item,  id: getId() }
 	await dispatch({
 		type: ADD_ITEM_ACTION,
 		payload: newItem,
@@ -24,7 +24,7 @@ export const deleteItemAction = (item) => async (dispatch) => {
 }
 
 export const updateItemAction = (item) => async (dispatch) => {
-	let newItem = {id: getId(), item}
+	let newItem = { id: getId(), item }
 	dispatch({
 		type: UPDATE_ITEM_ACTION,
 		payload: { ...newItem },
