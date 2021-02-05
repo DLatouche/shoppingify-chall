@@ -3,9 +3,18 @@
 .itemList {
     margin: 15px 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    animation: $toShowOpacity ;
+    .itemList__checkbox {
+        color: $primary;
+        font-size: 24px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
     .itemList__name {
+        margin-left: 5px;
+        word-break: break-word;
         font-family: Quicksand;
         font-size: 16px;
         font-style: normal;
@@ -13,12 +22,18 @@
         line-height: 23px;
         letter-spacing: 0em;
         color: $black;
+        user-select: none;
+        flex-grow: 2;
+        &:hover {
+            cursor: pointer;
+        }
     }
     .ItemList__button {
         height: 46px;
         display: flex;
         align-items: center;
         transition: all 0.5s;
+        justify-self: flex-end;
         .ItemList__button__quantity {
             color: $primary;
             font-family: Quicksand;
@@ -49,7 +64,8 @@
             }
         }
         .ItemList__button__icon {
-            transform: scale(0);
+            transform: scale(0) translateX(100%);
+            display: none;
             color: $primary;
             font-size: 24px;
             &:hover {
@@ -90,8 +106,46 @@
             background-color: $light;
             border-radius: 12px;
             .ItemList__button__icon {
+                animation: noneScale 0.5s;
+                display: block;
                 transform: scale(1);
             }
         }
+    }
+
+    &--checked {
+        .itemList__name {
+            text-decoration: line-through;
+        }
+    }
+    &--editing {
+        .itemList__checkbox {
+            display: none;
+        }
+        .itemList__name {
+            text-decoration: none;
+            &:hover {
+                cursor: initial;
+            }
+        }
+    }
+}
+
+@keyframes noneScale {
+    0% {
+        display: block;
+        transform: scale(0) translateX(100%);
+    }
+    100% {
+        transform: scale(1) translateX(0%);
+    }
+}
+
+@keyframes toLeft {
+    0% {
+        transform: translateX(30px);
+    }
+    100% {
+        transform: translateX(0px);
     }
 }

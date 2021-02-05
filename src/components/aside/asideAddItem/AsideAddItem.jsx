@@ -11,6 +11,7 @@ import { addItemToListAction } from "../../../redux/actions/list.action";
 import { currentListSelector } from "../../../redux/selectors/lists.selector";
 import { addItemAction } from "../../../redux/actions/item.action";
 import { addCategoryAction } from "../../../redux/actions/category.action";
+import { Checkbox } from "@material-ui/core";
 
 const AsideAddItem = ({ className, listCategories, setAside, addToCurrentList, addItem, addCategory }) => {
 
@@ -18,7 +19,8 @@ const AsideAddItem = ({ className, listCategories, setAside, addToCurrentList, a
         id: null, name: "",
         category: { id: null, name: "" },
         note: "",
-        image: ""
+        image: "",
+        check: false
     })
 
     const saveItem = async () => {
@@ -56,6 +58,17 @@ const AsideAddItem = ({ className, listCategories, setAside, addToCurrentList, a
     const onSelectChange = (e, categorySelected) => {
         setItem({ ...item, category: { id: categorySelected.key, name: categorySelected.name } })
     }
+
+    const onCancel = () => {
+        setItem({
+            id: null,
+            name: "",
+            category: { id: null, name: "" },
+            note: "",
+            image: ""
+        })
+        setAside("LIST")
+    }
     return (
         <div className={className + " asideAddItem"}>
             <p className="asideAddItem__title">Add a new item</p>
@@ -63,11 +76,10 @@ const AsideAddItem = ({ className, listCategories, setAside, addToCurrentList, a
             <Input className="asideAddItem__input" value={item.note} placeholder="Enter a note" name="note" label="Note (optional)" variant="multiline" onChange={onInputChange} />
             <Input className="asideAddItem__input" value={item.image} placeholder="Enter a url" name="image" label="Image (optional)" onChange={onInputChange} />
             <Input className="asideAddItem__input" value={item.category.name} placeholder="Enter a category" name="category" label="Category" onChange={onInputChange} />
-            <Select className="asideAddItem__select" onChange={onSelectChange} value={null} list={listCategories} />
+            <Select className="asideAddItem__select" onChange={onSelectChange} value={item.category.id} list={listCategories} />
             <div className="asideAddItem__actions">
-                <BigButton className="asideAddItem__actions__button" variant="transparent" onClick={() => { setAside("LIST") }}>cancel</BigButton>
+                <BigButton className="asideAddItem__actions__button" variant="transparent" onClick={onCancel}>cancel</BigButton>
                 <BigButton className="asideAddItem__actions__button" variant="primary" onClick={saveItem}>save</BigButton>
-
             </div>
         </div>
     )
@@ -85,7 +97,7 @@ export const AsideAddItemStore = ({ className }) => {
 
     const addToCurrentList = useCallback(
         (item) => {
-            return dispatch(addItemToListAction({ item, list: currentList[0] }))
+            return dispatch(addItemToListAction({ item, list: currentList }))
         },
         [dispatch]
     )

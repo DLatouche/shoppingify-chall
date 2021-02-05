@@ -11,19 +11,20 @@ import InputSearch from "../general/search/InputSearch"
 import ItemStore from "./Item"
 import './Items.scss'
 
-const Items = ({ items, categoriesWithFruits, addToCurrentList }) => {
+const Items = ({ items, categoriesWithFruits, addToList, currentList }) => {
 
     const [itemsToShow, setItemsToShow] = useState(items)
-    useEffect(()=>{
+    useEffect(() => {
         setItemsToShow(items)
     }, [items])
     const onSearch = (value) => {
         let list = items.filter((item) => item.name.toLowerCase().includes(value.toLowerCase()))
         setItemsToShow(list)
     }
-
-    const addToList = async (item) => {
-        let result = await addToCurrentList(item)
+    let disabled = currentList ? currentList.state !== "EDITING" : true
+    const addToCurrentList = async (item) => {
+        let newItem = {...item, check: false}
+        let result = await addToList(newItem, currentList)
         if (result.status === "FAILED") console.log("%cItems.jsx -> 24 ERROR: result.message", 'background: #FF0000; color:#FFFFFF', result.message)
     }
 
@@ -34,23 +35,23 @@ const Items = ({ items, categoriesWithFruits, addToCurrentList }) => {
                 <InputSearch onSearch={onSearch} list={items} />
             </div>
             <div className="items__categories">
-                {categoriesWithFruits.map(category => <CategoryView key={category.id+"c"} category={category} itemsToShow={itemsToShow} addToList={addToList} />)}
+                {categoriesWithFruits.map(category => <CategoryView disabled={disabled} key={category.id + "c"} category={category} itemsToShow={itemsToShow} addToCurrentList={addToCurrentList} />)}
             </div>
         </div>
     )
 }
 
-const CategoryView = ({ category, itemsToShow, addToList }) => {
+const CategoryView = ({ category, itemsToShow, addToCurrentList, disabled }) => {
     let { items } = category
     let itemsView = items.map(item => {
         if (include(itemsToShow, (itemList) => {
             return item.id === itemList.id
         })) {
-            return <ItemStore key={item.id+"i"} item={item} add={addToList} />
+            return <ItemStore disabled={disabled} key={item.id + "i"} item={item} add={addToCurrentList} />
         }
     })
     return (<div className="items__category">
-        <p className="items__category__name">{category.name + " ("+items.length+")"}</p>
+        <p className="items__category__name">{category.name + " (" + items.length + ")"}</p>
         {items.length === 0 ? <p className="items_category_noItem">No item in this category</p> : null}
         <div className="items__category__items">
             {itemsView}
@@ -63,11 +64,10 @@ export const ItemsStore = () => {
     const items = useSelector(itemsSortedSelector)
     const categories = useSelector(categoriesSortedSelector)
     const currentList = useSelector(currentListSelector)
-
     const dispatch = useDispatch()
-    const addToCurrentList = useCallback(
-        (item) => {
-            return dispatch(addItemToListAction({ item, list: currentList[0] }))
+    const addToList = useCallback(
+        (item, list) => {
+            return dispatch(addItemToListAction({ item, list }))
         },
         [dispatch]
     )
@@ -85,7 +85,7 @@ export const ItemsStore = () => {
 
 
     return (
-        <Items items={items} categoriesWithFruits={categoriesWithFruits} addToCurrentList={addToCurrentList} />
+        <Items items={items} categoriesWithFruits={categoriesWithFruits} addToList={addToList} currentList={currentList} />
     )
 }
 

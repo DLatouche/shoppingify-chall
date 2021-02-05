@@ -13,15 +13,15 @@ const items = [
 ]
 
 const lists = [{
-    id: "_1l", name: "Sample list", state: "editing", date: new Date("2021-01-10"),
+    id: "_1l", name: "Sample list", state: "CANCELLED", date: new Date("2021-01-10"),
     categories: [
-        { id: "_1c", name: "Fruit", items: [{ ...items[0], quantity: 2 }, { ...items[1], quantity: 1 }, { ...items[2], quantity: 3 }, { ...items[4], quantity: 5 }] },
-        { id: "_2c", name: "Vegetable", items: [{ ...items[6], quantity: 2 }] },
-        { id: "_3c", name: "Dairy", items: [{ ...items[8], quantity: 1 }] },
+        { id: "_1c", name: "Fruit", items: [{ ...items[0], check: false, quantity: 2 }, { ...items[1], check: false, quantity: 1 }, { ...items[2], check: false, quantity: 3 }, { ...items[4], check: false, quantity: 5 }] },
+        { id: "_2c", name: "Vegetable", items: [{ ...items[6], check: false, quantity: 2 }] },
+        { id: "_3c", name: "Dairy", items: [{ ...items[8], check: false, quantity: 1 }] },
     ]
 
 },
 ]
-// stateList: completing, editing, cancelled
+// stateList: EDITING => IN_PROGRESS => COMPLETE / CANCELLED, IN_PROGRESS
 
 export { categories, items, lists }

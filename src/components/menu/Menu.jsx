@@ -6,10 +6,12 @@ import PollOutlinedIcon from '@material-ui/icons/PollOutlined';
 import LocalGroceryStoreOutlinedIcon from '@material-ui/icons/LocalGroceryStoreOutlined';
 import logo from './logo.svg'
 import { useState } from 'react';
-const Menu = () => {
+import { useSelector } from 'react-redux';
+import { listsSelector } from '../../redux/selectors/lists.selector';
+const Menu = ({ lists }) => {
     const [selected, setSelected] = useState(1)
     const history = useHistory()
-    let number = 3
+    let number = lists.length
 
     const go = (path) => {
         if (path === "/") setSelected(1)
@@ -73,7 +75,9 @@ const Menu = () => {
 }
 
 const MenuStore = () => {
-    return <Menu />
+    const lists = useSelector(listsSelector)
+
+    return <Menu lists={lists} />
 }
 
 export default MenuStore

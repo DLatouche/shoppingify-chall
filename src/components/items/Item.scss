@@ -23,15 +23,21 @@
         letter-spacing: 0em;
         color: $dark;
         padding-right: 2px;
-
+        word-break: break-word;
     }
     .item__icon {
         color: #c1c1c4;
         transition: all 0.5s;
+        transform: scale(1);
         &:hover {
             cursor: pointer;
             color: $dark;
             transform: scale($sizeScale);
+        }
+    }
+    &--disabled {
+        .item__icon {
+            transform: scale(0);
         }
     }
 }

@@ -1,10 +1,10 @@
 import { getId, getInclude, include } from "../../utilities/helper"
 import {
-    ADD_LIST_ACTION, ADD_ITEM_TO_LIST
+    ADD_LIST_ACTION, ADD_ITEM_TO_LIST, UPDATE_LIST
 } from "../reducers/list.reducer"
 
 export const addListAction = (list) => async (dispatch) => {
-    let newList = { id: getId(), list }
+    let newList = { ...list, id: getId() }
     await dispatch({
         type: ADD_LIST_ACTION,
         payload: newList,
@@ -53,4 +53,12 @@ export const addItemToListAction = ({ item, list }) => async (dispatch) => {
         return { data: list, status: "OK", message: "" }
     }
 
+}
+
+export const updateListAction = (list) => async (dispatch) => {
+    await dispatch({
+        type: UPDATE_LIST,
+        payload: list,
+    })
+    return list
 }
