@@ -5,6 +5,7 @@ import { categoriesReducer } from "../reducers/category.reducer"
 import { itemsReducer } from "../reducers/item.reducer"
 import { listsReducer } from "../reducers/list.reducer"
 import { asideReducer } from "../reducers/aside.reducer"
+import { currentItemReducer } from "../reducers/currentItem.reducer"
 
 const store = createStore(
 	combineReducers({
@@ -12,6 +13,7 @@ const store = createStore(
 		items: itemsReducer,
 		lists: listsReducer,
 		aside: asideReducer,
+		currentItem: currentItemReducer,
 	}),
 	composeWithDevTools(applyMiddleware(thunk))
 )

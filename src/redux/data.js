@@ -1,7 +1,10 @@
 const categories = [{ id: "_1c", name: "Fruit" }, { id: "_2c", name: "Vegetable" }, { id: "_3c", name: "Dairy" }, { id: "_4c", name: "Meat and fish" }]
 
 const items = [
-    { id: "_1", name: "Avocado", category: { ...categories[0] }, note: "", image: "https://solidstarts.com/wp-content/uploads/introducing-avocado-to-babies.jpg" },
+    {
+        id: "_1", name: "Avocado", category: { ...categories[0] }, note: `Copy
+    Nutrient-dense foods are those that provide substantial amounts of vitamins, minerals and other nutrients with relatively few calories. One-third of a medium avocado (50 g) has 80 calories and contributes nearly 20 vitamins and minerals, making it a great nutrient-dense food choice.`, image: "https://solidstarts.com/wp-content/uploads/introducing-avocado-to-babies.jpg"
+    },
     { id: "_2", name: "Cherry (100g)", category: { ...categories[0] }, note: "", image: "https://larecette.net/wp-content/uploads/2019/02/poires-1200x900.jpg" },
     { id: "_3", name: "Pear", category: { ...categories[0] }, note: "", image: "https://solidstarts.com/wp-content/uploads/introducing-avocado-to-babies.jpg" },
     { id: "_4", name: "Apple", category: { ...categories[0] }, note: "", image: "" },
@@ -13,7 +16,7 @@ const items = [
 ]
 
 const lists = [{
-    id: "_1l", name: "Sample list", state: "CANCELLED", date: new Date("2021-01-10"),
+    id: "_1l", name: "Sample list", state: "IN_PROGRESS", date: new Date("2021-01-10"),
     categories: [
         { id: "_1c", name: "Fruit", items: [{ ...items[0], check: false, quantity: 2 }, { ...items[1], check: false, quantity: 1 }, { ...items[2], check: false, quantity: 3 }, { ...items[4], check: false, quantity: 5 }] },
         { id: "_2c", name: "Vegetable", items: [{ ...items[6], check: false, quantity: 2 }] },

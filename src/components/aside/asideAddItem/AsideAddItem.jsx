@@ -13,7 +13,7 @@ import { addItemAction } from "../../../redux/actions/item.action";
 import { addCategoryAction } from "../../../redux/actions/category.action";
 import { Checkbox } from "@material-ui/core";
 
-const AsideAddItem = ({ className, listCategories, setAside, addToCurrentList, addItem, addCategory }) => {
+const AsideAddItem = ({ className, listCategories, setAside, currentList, addToCurrentList, addItem, addCategory }) => {
 
     const [item, setItem] = useState({
         id: null, name: "",
@@ -31,7 +31,7 @@ const AsideAddItem = ({ className, listCategories, setAside, addToCurrentList, a
             newItem.category = category
         }
         newItem = await addItem(newItem)
-        let result = await addToCurrentList(newItem)
+        let result = await addToCurrentList({ list: currentList, item: newItem })
         if (result.status === "FAILED") console.log("%cAsodeAddItems.jsx -> 24 ERROR: result.message", 'background: #FF0000; color:#FFFFFF', result.message)
         if (result.status === "OK") {
             setItem({
@@ -96,8 +96,8 @@ export const AsideAddItemStore = ({ className }) => {
 
 
     const addToCurrentList = useCallback(
-        (item) => {
-            return dispatch(addItemToListAction({ item, list: currentList }))
+        ({ item, list }) => {
+            return dispatch(addItemToListAction({ item, list }))
         },
         [dispatch]
     )
@@ -126,7 +126,7 @@ export const AsideAddItemStore = ({ className }) => {
     });
 
     return (
-        <AsideAddItem className={className} listCategories={listCategories} setAside={setAside} addToCurrentList={addToCurrentList} addItem={addItem} addCategory={addCategory} />
+        <AsideAddItem className={className} listCategories={listCategories} setAside={setAside} currentList={currentList} addToCurrentList={addToCurrentList} addItem={addItem} addCategory={addCategory} />
     )
 }
 

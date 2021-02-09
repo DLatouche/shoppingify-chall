@@ -57,6 +57,17 @@
             background-color: $dark;
         }
     }
+    &--red {
+        background-color: $red;
+        color: $light;
+        &:hover {
+            background: darken($red, $hueDegree);
+        }
+        .bigButton__ripple .bigButton__ripple__content {
+            background-color: $dark;
+        }
+    }
+
     &--transparent {
         background-color: transparent;
         color: $dark;

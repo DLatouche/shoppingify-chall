@@ -1,5 +1,5 @@
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import './BigButton.scss';
 
 const BigButton = ({ variant, onClick, children, className }) => {
@@ -8,6 +8,10 @@ const BigButton = ({ variant, onClick, children, className }) => {
         combinedSpanStyles: {},
         count: 0
     })
+
+    useEffect(()=>()=>{
+        cleanUp()
+    }, [])
 
     let bounce = null
 

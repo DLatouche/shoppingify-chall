@@ -130,6 +130,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        .asideList__footer__action__button{
+            margin: 10px;
+        }
         .asideList__footer__img {
             display: none;
         }

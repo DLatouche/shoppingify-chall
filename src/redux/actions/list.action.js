@@ -1,6 +1,6 @@
 import { getId, getInclude, include } from "../../utilities/helper"
 import {
-    ADD_LIST_ACTION, ADD_ITEM_TO_LIST, UPDATE_LIST
+    ADD_LIST_ACTION, ADD_ITEM_TO_LIST, UPDATE_LIST, CREATE_EMPTY_LIST_ACTION
 } from "../reducers/list.reducer"
 
 export const addListAction = (list) => async (dispatch) => {
@@ -61,4 +61,14 @@ export const updateListAction = (list) => async (dispatch) => {
         payload: list,
     })
     return list
+}
+
+export const createEmptyListAction = () => async (dispatch) => {
+    let newList = { id: getId(), name: "", state: "EDITING", categories: [], date: new Date() }
+
+    await dispatch({
+        type: CREATE_EMPTY_LIST_ACTION,
+        payload: newList,
+    })
+    return newList
 }

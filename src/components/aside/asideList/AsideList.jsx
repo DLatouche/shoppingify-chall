@@ -10,11 +10,14 @@ import ItemListStore from "./itemList/ItemList";
 import EditIcon from '@material-ui/icons/Edit';
 
 import { setAsideAction } from "../../../redux/actions/aside.action";
-import { addListAction, updateListAction } from "../../../redux/actions/list.action";
+import { addListAction, createEmptyListAction, updateListAction } from "../../../redux/actions/list.action";
 import { getInclude } from "../../../utilities/helper";
 import BigButton from "../../general/bigButton/BigButton";
-const AsideList = ({ className, list, setAside, updateList }) => {
+import Dialog from "../../general/dialog/Dialog";
+
+const AsideList = ({ className, list, setAside, updateList, createEmptyList }) => {
     const [name, setName] = useState(list ? list.name : "")
+    const [open, setOpen] = useState(false)
     useEffect(() => {
         setName(list.name)
     }, [list])
@@ -50,13 +53,16 @@ const AsideList = ({ className, list, setAside, updateList }) => {
     }
 
     const onCancel = () => {
-        cancelList()
+        setOpen(true)
+        //cancelList()
     }
 
     const cancelList = async () => {
+        setOpen(false)
         let listUpdated = { ...list }
         listUpdated.state = "CANCELLED"
-        let result = await updateList(listUpdated)
+        updateList(listUpdated)
+        await createEmptyList()
     }
 
     const updateEditing = async () => {
@@ -69,20 +75,22 @@ const AsideList = ({ className, list, setAside, updateList }) => {
     const onComplete = async () => {
         let listUpdated = { ...list }
         listUpdated.state = "COMPLETE"
-        let result = await updateList(listUpdated)
+        updateList(listUpdated)
+        await createEmptyList()
     }
 
     const onChange = (e) => {
         setName(e.target.value)
     }
 
+
     return (
         <div className={className + " asideList"}>
+            <Dialog open={open} onCancel={() => { setOpen(false) }} onValid={cancelList} text="Are you sure that you want to cancel this list?" />
             <div className="asideList__header">
                 <img className="asideList__img" src={bottle} alt="Bottle" />
                 <div className="asideList__header__container" >
                     <p className="asideList__header__intro">Didn’t find what you need?</p>
-
                     <Button className="asideList__header__button" variant="white" onClick={() => { setAside("ADD_ITEM") }}>Add item</Button>
                 </div>
             </div>
@@ -117,14 +125,14 @@ const AsideList = ({ className, list, setAside, updateList }) => {
                 <img className="asideList__footer__img" src={goToShop} alt="Go to add item picture" />
                 {listState === "IN_PROGRESS" ?
                     <>
-                        <BigButton className="asideList__footer__action__button" onClick={onCancel} variant="transparent" type="text">Cancel</BigButton>
-                        <BigButton className="asideList__footer__action__button" onClick={onComplete} variant="blue" type="text">Complete</BigButton>
+                        <BigButton className="asideList__footer__action__button" onClick={onCancel} variant="transparent" >Cancel</BigButton>
+                        <BigButton className="asideList__footer__action__button" onClick={onComplete} variant="blue" >Complete</BigButton>
                     </>
 
                     :
                     <div className="asideList__footer__inputName">
                         <input className="asideList__footer__inputName__input" disabled={noItem} onChange={onChange} value={name} type="text" placeholder="Enter a name" />
-                        <BigButton className="asideList__footer__inputName__button" disabled={noItem} onClick={onSave} type="text">Save</BigButton>
+                        <BigButton className="asideList__footer__inputName__button" disabled={noItem} onClick={onSave}>Save</BigButton>
                     </div>
                 }
             </div>
@@ -157,15 +165,23 @@ export const AsideListStore = ({ className }) => {
         },
         [dispatch]
     )
+    
+    const createEmptyList = useCallback(
+        () => {
+            return dispatch(createEmptyListAction())
+        },
+        [dispatch]
+    )
 
 
     if (!list) {
         // create a new list
+        console.log("%cAsideList.jsx -> 170 RED: No list !", 'background: #f44336; color:#FFFFFF')
         let newList = { id: null, name: "", state: "EDITING", categories: [], date: new Date() }
         createList(newList)
     }
     return (
-        <AsideList className={className} list={list} setAside={setAside} updateList={updateList} />
+        <AsideList className={className} list={list} setAside={setAside} updateList={updateList} createEmptyList={createEmptyList} />
     )
 }
 

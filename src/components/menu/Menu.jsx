@@ -5,21 +5,25 @@ import ListIcon from '@material-ui/icons/List';
 import PollOutlinedIcon from '@material-ui/icons/PollOutlined';
 import LocalGroceryStoreOutlinedIcon from '@material-ui/icons/LocalGroceryStoreOutlined';
 import logo from './logo.svg'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { listsSelector } from '../../redux/selectors/lists.selector';
 const Menu = ({ lists }) => {
     const [selected, setSelected] = useState(1)
+    const [number, setNumber] = useState(0)
     const history = useHistory()
-    let number = lists.length
+
+    useEffect(() => {
+        setNumber(lists.length)
+    }, [lists])
 
     const go = (path) => {
         if (path === "/") setSelected(1)
         else if (path === "/history") setSelected(2)
         else setSelected(3)
         history.push(path)
-
     }
+
     return (
         <div className="menu">
             <div className="menu__logo">

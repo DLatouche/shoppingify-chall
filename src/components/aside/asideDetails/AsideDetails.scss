@@ -1,3 +1,86 @@
-.asideDetails{
-    background-color: plum;
+@import "../../../variables";
+
+.asideDetails {
+    background-color: $light;
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .asideDetails__back {
+        color: $primary;
+        display: flex;
+        align-items: center;
+        margin: 10px 0 30px 0;
+        .asideDetails__back__icon {
+            font-size: 16px;
+            margin-right: 5px;
+        }
+        .asideDetails__back__text {
+            font-family: Quicksand;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 18px;
+            letter-spacing: 0em;
+        }
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    .asideDetails__body {
+        flex-grow: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: auto;
+        .asideDetails__body__image {
+            border-radius: 25px;
+            max-width: 100%;
+            position: relative;
+            
+            &[alt]:after {
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #fff;
+                font-family: "Helvetica";
+                font-weight: 300;
+                line-height: 2;
+                text-align: center;
+                content: attr(alt);
+            }
+        }
+        .asideDetails__body__item {
+            align-self: start;
+            display: flex;
+            margin: 10px 0;
+            flex-direction: column;
+            .asideDetails__body__item__name {
+                margin: 10px 0;
+                font-family: Quicksand;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 15px;
+                letter-spacing: 0em;
+                color: #c1c1c4;
+            }
+            .asideDetails__body__item__data {
+                font-family: Quicksand;
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 30px;
+                letter-spacing: 0em;
+            }
+        }
+    }
+    .asideDetails__footer {
+        margin: 20px 0;
+        .asideDetails__footer__button {
+        }
+    }
 }
