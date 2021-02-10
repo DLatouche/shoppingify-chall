@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 import HistoryStore from "../app/history/History"
 import StatisticsStore from "../app/statistics/Statistics"
 import AsideStore from "../aside/Aside"
-import ItemsStore from "../items/Items"
+import ItemsStore from "../app/items/Items"
 import MenuStore from "../menu/Menu"
 import "./ContainerApp.scss"
 
@@ -24,7 +24,7 @@ const ContainerApp = () => {
                     <StatisticsStore />
                 </Route>
             </div>
-            <AsideStore/>
+            <AsideStore />
         </div>
     )
 }

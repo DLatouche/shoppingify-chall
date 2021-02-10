@@ -1,13 +1,13 @@
 
 import React, { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { setItems } from "../../redux/actions/item.action"
-import { addItemToListAction } from "../../redux/actions/list.action"
-import { categoriesSortedSelector } from "../../redux/selectors/categories.selector"
-import { itemsSortedByCategorySelector, itemsSortedSelector } from "../../redux/selectors/items.selector"
-import { currentListSelector } from "../../redux/selectors/lists.selector"
-import { include } from "../../utilities/helper"
-import InputSearch from "../general/search/InputSearch"
+import { setItems } from "../../../redux/actions/item.action"
+import { addItemToListAction } from "../../../redux/actions/list.action"
+import { categoriesSortedSelector } from "../../../redux/selectors/categories.selector"
+import { itemsSortedByCategorySelector, itemsSortedSelector } from "../../../redux/selectors/items.selector"
+import { currentListSelector } from "../../../redux/selectors/lists.selector"
+import { include } from "../../../utilities/helper"
+import InputSearch from "../../general/search/InputSearch"
 import ItemStore from "./Item"
 import './Items.scss'
 

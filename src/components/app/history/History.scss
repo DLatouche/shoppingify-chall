@@ -1,0 +1,27 @@
+@import "../../../variables";
+
+.history {
+    padding: 30px 50px;
+    .history__title {
+        font-family: Quicksand;
+        font-size: 26px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 33px;
+        letter-spacing: 0em;
+    }
+    .history__month__container {
+        margin: 20px 0;
+        .history__month__container__date {
+            font-family: Quicksand;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 15px;
+            letter-spacing: 0em;
+        }
+        .history__month__container__list {
+            margin: 14px 0;
+        }
+    }
+}

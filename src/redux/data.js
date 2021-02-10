@@ -24,7 +24,34 @@ const lists = [{
     ]
 
 },
+{
+    id: "_2l", name: "Sample list", state: "COMPLETED", date: new Date("2021-01-11"),
+    categories: [
+        { id: "_1c", name: "Fruit", items: [{ ...items[0], check: false, quantity: 2 }, { ...items[1], check: false, quantity: 1 }, { ...items[2], check: false, quantity: 3 }, { ...items[4], check: false, quantity: 5 }] },
+        { id: "_2c", name: "Vegetable", items: [{ ...items[6], check: false, quantity: 2 }] },
+        { id: "_3c", name: "Dairy", items: [{ ...items[8], check: false, quantity: 1 }] },
+    ]
+
+},
+{
+    id: "_3l", name: "Sample list", state: "COMPLETED", date: new Date("2021-01-12"),
+    categories: [
+        { id: "_1c", name: "Fruit", items: [{ ...items[0], check: false, quantity: 2 }, { ...items[1], check: false, quantity: 1 }, { ...items[2], check: false, quantity: 3 }, { ...items[4], check: false, quantity: 5 }] },
+        { id: "_2c", name: "Vegetable", items: [{ ...items[6], check: false, quantity: 2 }] },
+        { id: "_3c", name: "Dairy", items: [{ ...items[8], check: false, quantity: 1 }] },
+    ]
+
+},
+{
+    id: "_34", name: "Sample list", state: "CANCELLED", date: new Date("2021-02-11"),
+    categories: [
+        { id: "_1c", name: "Fruit", items: [{ ...items[0], check: false, quantity: 2 }, { ...items[1], check: false, quantity: 1 }, { ...items[2], check: false, quantity: 3 }, { ...items[4], check: false, quantity: 5 }] },
+        { id: "_2c", name: "Vegetable", items: [{ ...items[6], check: false, quantity: 2 }] },
+        { id: "_3c", name: "Dairy", items: [{ ...items[8], check: false, quantity: 1 }] },
+    ]
+
+},
 ]
-// stateList: EDITING => IN_PROGRESS => COMPLETE / CANCELLED, IN_PROGRESS
+// stateList: EDITING => IN_PROGRESS => COMPLETED / CANCELLED, IN_PROGRESS
 
 export { categories, items, lists }

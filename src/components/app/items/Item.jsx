@@ -3,8 +3,8 @@ import React, { useCallback, useEffect, useState } from "react"
 import './Item.scss'
 import AddIcon from '@material-ui/icons/Add';
 import { useDispatch } from "react-redux";
-import { setAsideAction } from "../../redux/actions/aside.action";
-import { setCurrentItemReducer } from "../../redux/actions/currentItem.action";
+import { setAsideAction } from "../../../redux/actions/aside.action";
+import { setCurrentItemReducer } from "../../../redux/actions/currentItem.action";
 const Item = ({ item, add, disabled, setAside, setCurrentItem }) => {
     const [itemView, setItem] = useState({ ...item })
     useEffect(() => {

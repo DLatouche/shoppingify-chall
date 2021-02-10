@@ -74,7 +74,7 @@ const AsideList = ({ className, list, setAside, updateList, createEmptyList }) =
 
     const onComplete = async () => {
         let listUpdated = { ...list }
-        listUpdated.state = "COMPLETE"
+        listUpdated.state = "COMPLETED"
         updateList(listUpdated)
         await createEmptyList()
     }

@@ -17,4 +17,9 @@ const getInclude = (list, condition) => {
     }
     return -1
 }
-export { getId, include, getInclude }
+
+const twoNumbers = (nb) => {
+	return parseFloat(parseFloat(nb).toFixed(2))
+}
+
+export { getId, include, getInclude, twoNumbers }

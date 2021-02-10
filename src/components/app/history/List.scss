@@ -1,0 +1,67 @@
+@import "../../../variables";
+.list {
+    background: $light;
+    box-shadow: $box-shadow-1;
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 10fr 150px 100px 40px ;
+    align-items: center;
+    padding: 15px 10px;
+    .list__name {
+        flex-grow: 2;
+        font-family: Quicksand;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        letter-spacing: 0em;
+    }
+    .list__date__container {
+        color: #c1c1c4;
+        display: flex;
+        align-items: center;
+        margin: 0 10px;
+        justify-self: flex-end;
+        .list__date__container__icon {
+            font-size: 20px;
+            margin: 0 10px;
+        }
+        .list__date__container__date {
+            font-family: Quicksand;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 15px;
+            letter-spacing: 0em;
+        }
+    }
+    .list__date__state {
+        justify-self: center;
+        font-family: Quicksand;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 15px;
+        letter-spacing: 0em;
+        margin-left: 20px;
+        border-radius: 8px;
+        padding: 4px;
+        &--completed {
+            color: $blue;
+            border: 1px solid $blue;
+        }
+        &--cancelled {
+            color: $red;
+            border: 1px solid $red;
+        }
+    }
+    .list__icon {
+        font-size: 30px;
+        justify-self: flex-end;
+        margin-left: 20px;
+        color: $primary;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
