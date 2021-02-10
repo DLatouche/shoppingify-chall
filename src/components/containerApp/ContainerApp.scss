@@ -1,7 +1,22 @@
 .containerApp {
     display: flex;
+    overflow-y: hidden;
     .body {
         background-color: #fafafe;
         flex-grow: 2;
     }
+}
+
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: opacity 250ms ease-in;
+}
+
+.fade-exit {
+    opacity: 0;
+    height: 0;
 }
