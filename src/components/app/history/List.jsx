@@ -1,8 +1,7 @@
 import './List.scss'
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-const List = ({ list, className }) => {
-    console.log("List.jsx -> 5: list", list)
+const List = ({ list, className, onClick }) => {
     let date = list.date.toLocaleDateString("en-US", { weekday: 'short' })
     let strDate = date + " " + list.date.getDate() + "." + (list.date.getMonth() + 1) + "." + list.date.getFullYear()
     return (
@@ -15,15 +14,15 @@ const List = ({ list, className }) => {
                 <p className="list__date__container__date">{strDate}</p>
             </div>
             <p className={"list__date__state list__date__state--" + list.state.toLowerCase()}>{list.state.toLowerCase()}</p>
-            <ChevronRightIcon className="list__icon" />
+            <ChevronRightIcon className="list__icon" onClick={() => { onClick(list) }} />
 
         </div>
     )
 }
 
-const ListStore = ({ list, className }) => {
+const ListStore = ({ list, className, onClick }) => {
     return (
-        <List list={list} className={className} />
+        <List list={list} className={className} onClick={onClick}/>
     )
 }
 

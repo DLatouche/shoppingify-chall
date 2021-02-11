@@ -1,0 +1,107 @@
+@import "../../../../variables";
+.detailsList {
+    padding: 30px 50px;
+
+    .detailsList__back {
+        display: flex;
+        align-items: center;
+        color: $primary;
+        &:hover {
+            cursor: pointer;
+        }
+        .detailsList__back__icon {
+            font-size: 20px;
+        }
+        .detailsList__back__text {
+            margin-left: 10px;
+            font-family: Quicksand;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 18px;
+            letter-spacing: 0em;
+        }
+    }
+    .detailsList__name {
+        margin: 30px 0 20px 0;
+        font-family: Quicksand;
+        font-size: 26px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 33px;
+        letter-spacing: 0em;
+    }
+    .detailsList__date__container {
+        color: #c1c1c4;
+        display: flex;
+        align-items: center;
+        justify-self: flex-end;
+        .detailsList__date__container__icon {
+            font-size: 20px;
+        }
+        .detailsList__date__container__date {
+            margin: 0 10px;
+            font-family: Quicksand;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 15px;
+            letter-spacing: 0em;
+        }
+    }
+    .detailsList__categories {
+        .detailsList__category {
+            margin: 50px 0;
+            .detailsList__category__name {
+                margin: 20px 0;
+            }
+            .detailsList__category__items {
+                display: grid;
+                grid-gap: 20px;
+                grid-template-columns: repeat(auto-fit, 180px);
+                align-items: flex-start;
+                .detailsList__category__item {
+                    background: $light;
+                    width: 180px;
+                    box-shadow: $box-shadow-1;
+                    border-radius: 12px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 15px;
+                    .detailsList__category__item__name {
+                        font-family: Quicksand;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 20px;
+                        letter-spacing: 0em;
+                        color: $dark;
+                        padding-right: 2px;
+                        word-break: break-word;
+                    }
+                    .detailsList__category__item__quantity {
+                        color: $primary;
+
+                        font-family: Quicksand;
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 15px;
+                        letter-spacing: 0em;
+
+                        .detailsList__category__item__pcs {
+                            padding-left: 4px;
+                            font-family: Quicksand;
+                            font-size: 12px;
+                            font-style: normal;
+                            font-weight: 500;
+                            line-height: 15px;
+                            letter-spacing: 0em;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
