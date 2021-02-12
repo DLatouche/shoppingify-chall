@@ -9,6 +9,13 @@ export const currentListSelector = createSelector(
     }
 )
 
+export const listsCancelledOrCompleted = createSelector(
+    listsSelector,
+    lists => {
+        return lists.filter(list => list.state === "COMPLETED" || list.state === "CANCELLED")
+    }
+)
+
 export const listByMonthSelector = createSelector(
     listsSelector,
     lists => {

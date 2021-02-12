@@ -19,7 +19,7 @@ const getInclude = (list, condition) => {
 }
 
 const twoNumbers = (nb) => {
-	return parseFloat(parseFloat(nb).toFixed(2))
+    return parseFloat(parseFloat(nb).toFixed(2))
 }
 
 export { getId, include, getInclude, twoNumbers }

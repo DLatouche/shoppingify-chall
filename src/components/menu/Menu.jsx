@@ -7,7 +7,7 @@ import LocalGroceryStoreOutlinedIcon from '@material-ui/icons/LocalGroceryStoreO
 import logo from './logo.svg'
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { listsSelector } from '../../redux/selectors/lists.selector';
+import { listsCancelledOrCompleted, listsSelector } from '../../redux/selectors/lists.selector';
 const Menu = ({ lists }) => {
     const [selected, setSelected] = useState(1)
     const [number, setNumber] = useState(0)
@@ -79,7 +79,7 @@ const Menu = ({ lists }) => {
 }
 
 const MenuStore = () => {
-    const lists = useSelector(listsSelector)
+    const lists = useSelector(listsCancelledOrCompleted)
 
     return <Menu lists={lists} />
 }

@@ -2,6 +2,10 @@
     display: flex;
     overflow-y: hidden;
     .body {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
         background-color: #fafafe;
         flex-grow: 2;
     }
@@ -9,6 +13,7 @@
 
 .fade-enter {
     opacity: 0;
+    width: 100%;
 }
 
 .fade-enter.fade-enter-active {
@@ -17,6 +22,5 @@
 }
 
 .fade-exit {
-    opacity: 0;
-    height: 0;
+    display: none;
 }

@@ -6,17 +6,22 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import CheckBoxOutlineBlankOutlinedIcon from '@material-ui/icons/CheckBoxOutlineBlankOutlined';
 import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
-const ItemList = ({ item, removeFromList, listEditing }) => {
+const ItemList = ({ item, removeFromList, listEditing, update }) => {
     const [stateItem, setItem] = useState(item)
     const [isOpened, setOpen] = useState(false)
     useEffect(() => {
         setItem(item)
     }, [item])
 
+    useEffect(() => {
+        if(!listEditing) setOpen(false)
+    }, [listEditing])
+
     const add = () => {
         item = { ...stateItem }
         item.quantity += 1
         setItem(item)
+        update(item)
     }
     const deduct = () => {
         if (!listEditing) return
@@ -25,6 +30,8 @@ const ItemList = ({ item, removeFromList, listEditing }) => {
         setItem(item)
         if (item.quantity === 0) {
             removeFromList(item)
+        }else{
+            update(item)
         }
 
     }
@@ -40,6 +47,7 @@ const ItemList = ({ item, removeFromList, listEditing }) => {
         let item = { ...stateItem }
         item.check = !item.check
         setItem(item)
+        update(item)
     }
 
     const toggleOpen = () => {
@@ -73,9 +81,9 @@ const ItemList = ({ item, removeFromList, listEditing }) => {
     )
 }
 
-export const ItemListStore = ({ item, removeFromList, editing }) => {
+export const ItemListStore = ({ item, removeFromList, editing, update, listState }) => {
     return (
-        <ItemList item={item} removeFromList={removeFromList} listEditing={editing} />
+        <ItemList item={item} removeFromList={removeFromList} listEditing={editing} update={update} />
     )
 }
 

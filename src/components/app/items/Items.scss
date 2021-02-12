@@ -2,6 +2,8 @@
 
 .items {
     padding: 30px 50px;
+    max-width: 1200px;
+    width: 100%;
     .items__header {
         display: flex;
         justify-content: space-between;

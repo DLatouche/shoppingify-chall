@@ -1,0 +1,36 @@
+@import "../../../variables";
+.statistics {
+    width: 100%;
+    max-width: 1200px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 100vh;
+    grid-template-areas:
+        "topItems topCategories"
+        "summary summary";
+    padding: 20px;
+    .statistics__container {
+        padding: 20px;
+    }
+    .statistics__title {
+        font-family: Quicksand;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 30px;
+        letter-spacing: 0em;
+    }
+    .statistics__top {
+        &--items {
+            grid-area: topItems;
+        }
+        &--categories {
+            grid-area: topCategories;
+        }
+    }
+    .statistics__summary {
+        grid-area: summary;
+    }
+}

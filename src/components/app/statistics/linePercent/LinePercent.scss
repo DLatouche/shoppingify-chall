@@ -1,0 +1,67 @@
+@import "../../../../variables";
+.linePercent {
+    margin: 10px;
+    .linePercent__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &__name {
+            font-family: Quicksand;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 18px;
+            letter-spacing: 0em;
+        }
+        &__percent {
+            font-family: Quicksand;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 23px;
+            letter-spacing: 0em;
+            text-align: right;
+        }
+    }
+    .linePercent__bottom {
+        margin: 10px 0;
+        width: 100%;
+        background-color: #e0e0e0;
+        height: 6px;
+        border-radius: 4px;
+        position: relative;
+        &::after {
+            position: absolute;
+            content: "";
+            height: 6px;
+            border-radius: 4px;
+        }
+        &--orange {
+            &::after {
+                background-color: $primary;
+            }
+        }
+        &--blue {
+            &::after {
+                background-color: $blue;
+            }
+        }
+    }
+}
+
+@for $i from 1 through 100 {
+    @keyframes scale#{$i} {
+        from {
+            width: 0%;
+        }
+        to {
+            width: $i * 1%;
+        }
+    }
+    .linePercent__bottom--#{$i}percent {
+        &::after {
+            width: $i * 1%;
+            animation: scale#{$i} 1s ease;
+        }
+    }
+}

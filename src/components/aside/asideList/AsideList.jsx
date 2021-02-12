@@ -83,6 +83,13 @@ const AsideList = ({ className, list, setAside, updateList, createEmptyList }) =
         setName(e.target.value)
     }
 
+    const updateItem = (item) => {
+        let listUpdated = { ...list }
+        let iCategory = getInclude(listUpdated.categories, (category) => category.id === item.category.id)
+        let iItem = getInclude(listUpdated.categories[iCategory].items, (itm) => itm.id === item.id)
+        listUpdated.categories[iCategory].items[iItem] = item
+        updateList(listUpdated)
+    }
 
     return (
         <div className={className + " asideList"}>
@@ -109,7 +116,7 @@ const AsideList = ({ className, list, setAside, updateList, createEmptyList }) =
                             <div key={category.id} className="asideList__body__list__category">
                                 <p className="asideList__body__list__category__name">{category.name}</p>
                                 <div className="asideList__body__list__category_items">
-                                    {category.items.map(item => <ItemListStore key={item.id} item={item} removeFromList={removeFromList} editing={list.state === "EDITING"} />)}
+                                    {category.items.map(item => <ItemListStore key={item.id} item={item} removeFromList={removeFromList} editing={list.state === "EDITING"} update={updateItem} />)}
                                 </div>
                             </div>
                         )
@@ -165,7 +172,7 @@ export const AsideListStore = ({ className }) => {
         },
         [dispatch]
     )
-    
+
     const createEmptyList = useCallback(
         () => {
             return dispatch(createEmptyListAction())

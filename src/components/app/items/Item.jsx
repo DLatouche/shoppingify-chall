@@ -15,10 +15,15 @@ const Item = ({ item, add, disabled, setAside, setCurrentItem }) => {
         setCurrentItem(itemView)
         setAside("DETAILS")
     }
+
+    const onClickAdd = (e) => {
+        e.stopPropagation();
+        if (!disabled) add(itemView)
+    }
     return (
         <div className={!disabled ? "item" : "item item--disabled"} onClick={showItem}>
             <p className="item__name">{itemView.name}</p>
-            <AddIcon className="item__icon" onClick={() => { if (!disabled) add(itemView) }} />
+            <AddIcon className="item__icon" onClick={onClickAdd} />
         </div>
     )
 }
