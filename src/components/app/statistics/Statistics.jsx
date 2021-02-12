@@ -3,9 +3,9 @@ import { useSelector } from "react-redux"
 import { listByMonthSelector, listsSelector } from "../../../redux/selectors/lists.selector"
 import LinePercent from "./linePercent/LinePercent"
 import "./Statistics.scss"
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
-
-const Statistics = ({ topCategories, topItems }) => {
+const Statistics = ({ topCategories, topItems, dataItemByMonth }) => {
     const [topCat, setTopCat] = useState(topCategories)
     useEffect(() => {
         setTopCat(topCategories)
@@ -14,8 +14,13 @@ const Statistics = ({ topCategories, topItems }) => {
     useEffect(() => {
         setTopIte(topItems)
     }, [topItems])
+
+    const [itemByMonth, setItemByMonth] = useState(dataItemByMonth)
+    useEffect(() => {
+        setItemByMonth(dataItemByMonth)
+    }, [dataItemByMonth])
     const nbTop = 3
-    
+
     return (
         <div className="statistics">
             <div className="statistics__container statistics__top statistics__top--items">
@@ -40,7 +45,16 @@ const Statistics = ({ topCategories, topItems }) => {
             </div>
             <div className="statistics__container statistics__summary">
                 <p className="statistics__title">Monthly Summary</p>
+                <ResponsiveContainer width="100%" height={300}>
 
+                    <LineChart className="statisctics_chart" data={itemByMonth}>
+                        <Line type="monotone" dataKey="quantity" stroke="#f9a109" />
+                        <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                    </LineChart>
+                </ResponsiveContainer>
             </div>
         </div>
     )
@@ -92,7 +106,26 @@ const StatisticsStore = () => {
     })
     topItems.sort((a, b) => b.quantity - a.quantity)
     topCategories.sort((a, b) => b.quantity - a.quantity)
-    return <Statistics topItems={topItems} topCategories={topCategories} />
+
+    const dataItemByMonth = []
+    listByMonth.forEach(month => {
+        let quantity = 0
+
+        month.lists.forEach(list => {
+            list.categories.forEach(category => {
+                category.items.forEach(item => {
+                    quantity += item.quantity
+                })
+            })
+        })
+
+        dataItemByMonth.push({
+            name: month.date.toLocaleDateString("en-US", { year: 'numeric', month: 'long' }),
+            quantity
+        })
+    })
+
+    return <Statistics topItems={topItems} topCategories={topCategories} dataItemByMonth={dataItemByMonth} />
 }
 
 export default StatisticsStore
