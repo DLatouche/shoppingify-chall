@@ -1,23 +1,49 @@
+@import "../../variables";
 .aside {
-    width: 390px;
-    min-width: 390px;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-    position: relative;
+    position: absolute;
+    width: $widthAsideMenu;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    &--hidden {
+        transform: translateX(100%);
+        animation: desappearMenu 1s;
+    }
+    &--shown {
+        transform: translateX(0%);
+        animation: appearMenu 1s;
+    }
     .aside__container {
-        position: absolute;
-        width: 100%;
+        position: relative;
         height: 100vh;
-        transform: translateX(-100%);
-        animation: desappear 1s;
-
-        &--shown {
-            transform: translateX(0%);
-            z-index: 1;
-            opacity: 1;
-            animation: appear 1s;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        overflow-x: hidden;
+        .aside__menu {
+            height: 100vh;
+            width: 100%;
+            position: absolute;
+            &--shown {
+                transform: translateX(0%);
+                animation: appear 1s;
+            }
+            &--hidden {
+                transform: translateX(-100%);
+                animation: desappear 1s;
+            }
         }
+    }
+}
+@media screen and (max-width: 999px) {
+    .aside {
+        box-shadow: $box-shadow-5;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .aside {
+        width: calc(100% - #{$widthMenuMobil});
     }
 }
 
@@ -30,6 +56,23 @@
     }
 }
 @keyframes desappear {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes appearMenu {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+@keyframes desappearMenu {
     from {
         transform: translateX(0);
     }

@@ -6,6 +6,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100vh;
+
     .asideDetails__back {
         color: $primary;
         display: flex;

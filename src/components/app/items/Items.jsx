@@ -1,4 +1,4 @@
-
+import { useMediaQuery } from 'react-responsive'
 import React, { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setItems } from "../../../redux/actions/item.action"
@@ -42,12 +42,13 @@ const Items = ({ items, categoriesWithFruits, addToList, currentList }) => {
 }
 
 const CategoryView = ({ category, itemsToShow, addToCurrentList, disabled }) => {
+    const useMenu = useMediaQuery({ query: '(max-width: 999px)' })
     let { items } = category
     let itemsView = items.map(item => {
         if (include(itemsToShow, (itemList) => {
             return item.id === itemList.id
         })) {
-            return <ItemStore disabled={disabled} key={item.id + "i"} item={item} add={addToCurrentList} />
+            return <ItemStore useMenu={useMenu} disabled={disabled} key={item.id + "i"} item={item} add={addToCurrentList} />
         }
     })
     return (<div className="items__category">

@@ -2,10 +2,12 @@
 import React, { useCallback, useEffect, useState } from "react"
 import './Item.scss'
 import AddIcon from '@material-ui/icons/Add';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setAsideAction } from "../../../redux/actions/aside.action";
 import { setCurrentItemReducer } from "../../../redux/actions/currentItem.action";
-const Item = ({ item, add, disabled, setAside, setCurrentItem }) => {
+import { toggleDrawerAction } from "../../../redux/actions/drawer.action";
+import { drawerSelector } from "../../../redux/selectors/drawer.selector";
+const Item = ({ item, add, disabled, setAside, setCurrentItem, isOpened, useMenu, toggleDrawer }) => {
     const [itemView, setItem] = useState({ ...item })
     useEffect(() => {
         setItem(item)
@@ -14,6 +16,9 @@ const Item = ({ item, add, disabled, setAside, setCurrentItem }) => {
     const showItem = () => {
         setCurrentItem(itemView)
         setAside("DETAILS")
+        if (useMenu) {
+            if (!isOpened) toggleDrawer()
+        }
     }
 
     const onClickAdd = (e) => {
@@ -29,8 +34,9 @@ const Item = ({ item, add, disabled, setAside, setCurrentItem }) => {
 }
 
 
-export const ItemStore = ({ item, add, disabled }) => {
+export const ItemStore = ({ item, add, disabled, useMenu }) => {
     const dispatch = useDispatch()
+    const drawer = useSelector(drawerSelector)
 
     const setAside = useCallback(
         (aside) => {
@@ -46,9 +52,15 @@ export const ItemStore = ({ item, add, disabled }) => {
         [dispatch]
     )
 
+    const toggleDrawer = useCallback(
+        () => {
+            return dispatch(toggleDrawerAction())
+        },
+        [dispatch]
+    )
 
     return (
-        <Item item={item} add={add} disabled={disabled} setAside={setAside} setCurrentItem={setCurrentItem} />
+        <Item item={item} useMenu={useMenu} add={add} disabled={disabled} setAside={setAside} setCurrentItem={setCurrentItem} isOpened={drawer} toggleDrawer={toggleDrawer} />
     )
 }
 

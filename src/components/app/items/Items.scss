@@ -31,7 +31,8 @@
         }
     }
     .items__categories {
-        .items__category {
+            margin: 50px 0;
+            .items__category {
             margin: 50px 0;
             .items__category__name {
                 margin: 20px 0;
@@ -52,6 +53,15 @@
                 grid-template-columns: repeat(auto-fit, 180px);
                 align-items: flex-start;
             }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .items__header{
+        flex-direction: column;
+        .items__intro{
+            margin-bottom: 20px;
         }
     }
 }

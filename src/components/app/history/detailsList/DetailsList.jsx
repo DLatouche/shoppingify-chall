@@ -24,7 +24,7 @@ const DetailsList = ({ list, onClickBack }) => {
                         <p className="detailsList__category__name">{category.name}</p>
                         <div className="detailsList__category__items">
                             {category.items.map(item => (
-                                <div className="detailsList__category__item">
+                                <div key={item.id} className="detailsList__category__item">
                                     <p className="detailsList__category__item__name">{item.name}</p>
                                     <p className="detailsList__category__item__quantity">{item.quantity}<em className="detailsList__category__item__pcs">pcs</em></p>
                                 </div>

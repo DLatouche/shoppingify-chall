@@ -40,3 +40,11 @@
         height: 100%;
     }
 }
+@media screen and (max-width: 550px) {
+    .statistics{
+        grid-template-areas:
+        "topItems topItems"
+        "topCategories topCategories"
+        "summary summary"
+    }
+}

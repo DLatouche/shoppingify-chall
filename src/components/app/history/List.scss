@@ -4,7 +4,7 @@
     box-shadow: $box-shadow-1;
     border-radius: 12px;
     display: grid;
-    grid-template-columns: 10fr 150px 100px 40px ;
+    grid-template-columns: 10fr 150px 100px 40px;
     align-items: center;
     padding: 15px 10px;
     .list__name {
@@ -60,8 +60,32 @@
         justify-self: flex-end;
         margin-left: 20px;
         color: $primary;
-        &:hover{
+        &:hover {
             cursor: pointer;
+        }
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .list {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+            "a a a"
+            "b c d";
+        .list__name {
+            grid-area: a;
+            padding: 0 10px;
+        }
+        .list__date__container {
+            margin: 0;
+            grid-area: b;
+        }
+        .list__date__state {
+            grid-area: c;
+        }
+        .list__icon{
+            grid-area: d;
         }
     }
 }
