@@ -1,0 +1,9 @@
+{
+  "name": "shoppingify_back",
+  "version": "1.0.0",
+  "description": "back of shoppingify",
+  "main": "index.js",
+  "repository": "https://github.com/DLatouche/shoppingnify-chall.git",
+  "author": "Dorian Latouche <dorian.latouche@hotmail.com>",
+  "license": "MIT"
+}
