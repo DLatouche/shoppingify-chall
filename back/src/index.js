@@ -1,5 +1,8 @@
 import cors from "cors"
-import appRouter from "./modules/app/app.routes"
+import userRouter from "./modules/user/user.routes"
+import listRouter from "./modules/list/list.routes"
+import itemRouter from "./modules/item/item.routes"
+import categoryRouter from "./modules/category/category.routes"
 
 const express = require("express")
 const bodyParser = require("body-parser")
@@ -30,7 +33,9 @@ const debug = (req, res, next) => {
   nbRequests += 1
   next()
 }
-app.use(`${baseUrl}/`, debug, appRouter)
-// app.use(baseUrl + "/users", debug, userRouter)
+app.use(`${baseUrl}/`, debug, userRouter)
+app.use(`${baseUrl}/`, debug, listRouter)
+app.use(`${baseUrl}/`, debug, itemRouter)
+app.use(`${baseUrl}/`, debug, categoryRouter)
 
 module.exports = app
