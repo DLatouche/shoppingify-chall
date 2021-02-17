@@ -4,6 +4,8 @@ import UserController from "./user.controller"
 const userRouter = express.Router()
 const userController = new UserController()
 
-userRouter.get("/create", userController.create)
+userRouter.post("/create", (req, res) => {
+  userController.create({ req, res })
+})
 
 module.exports = userRouter

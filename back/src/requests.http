@@ -1,0 +1,17 @@
+POST http://localhost:9499/api/users/create
+Content-Type: application/json
+
+{
+
+}
+
+
+###
+
+GET http://localhost:9499/api/categories/items
+Content-Type: application/json
+Authorization: bearer Imtoken12345withnumberandletters156
+
+{
+   
+}

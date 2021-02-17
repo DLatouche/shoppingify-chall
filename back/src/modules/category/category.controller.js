@@ -8,4 +8,8 @@ export default class CategoryController {
   async create(req, res) {
     res.send(await this.categoryService.create())
   }
+
+  async getCategoriesWithItems({ res }) {
+    res.send("OK")
+  }
 }

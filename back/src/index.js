@@ -24,18 +24,13 @@ const debug = (req, res, next) => {
     second: "2-digit",
     hour12: false,
   }
-  console.log(
-    `Request ${nbRequests} at: `,
-    new Date().toLocaleDateString("EN", options),
-    "to ",
-    req.url
-  )
+  console.log(`Request ${nbRequests} at: `, new Date().toLocaleDateString("EN", options), "to ", req.url)
   nbRequests += 1
   next()
 }
-app.use(`${baseUrl}/`, debug, userRouter)
-app.use(`${baseUrl}/`, debug, listRouter)
-app.use(`${baseUrl}/`, debug, itemRouter)
-app.use(`${baseUrl}/`, debug, categoryRouter)
+app.use(`${baseUrl}/users`, debug, userRouter)
+app.use(`${baseUrl}/lists`, debug, listRouter)
+app.use(`${baseUrl}/items`, debug, itemRouter)
+app.use(`${baseUrl}/categories`, debug, categoryRouter)
 
 module.exports = app
