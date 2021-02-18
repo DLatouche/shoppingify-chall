@@ -5,7 +5,15 @@ export default class ListController {
     this.listService = new ListService()
   }
 
-  async create(req, res) {
-    res.send(await this.listService.create())
+  async create({ req, res }) {
+    try {
+      const { user } = req
+      const { list } = req.body
+      const newList = await this.listService.create({ userId: user.id, list })
+      res.send({ list: newList })
+    } catch (error) {
+      console.log("%list.controller.js -> 12 ERROR: error", "background: #FF0000; color:#FFFFFF", error)
+      res.status(500).send(error)
+    }
   }
 }

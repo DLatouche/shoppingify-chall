@@ -1,3 +1,4 @@
+### USER
 POST http://localhost:9499/api/users/create
 Content-Type: application/json
 
@@ -6,12 +7,44 @@ Content-Type: application/json
 }
 
 
-###
-
+### CATEGORY
 GET http://localhost:9499/api/categories/items
 Content-Type: application/json
 Authorization: bearer Imtoken12345withnumberandletters156
 
 {
    
+}
+
+### ITEM
+POST http://localhost:9499/api/items/create
+Content-Type: application/json
+Authorization: bearer Imtoken12345withnumberandletters156
+
+{
+   "item":{
+       "id": null,
+       "name": "Brocolis",
+       "note": "", 
+       "image": "",
+       "category": {
+           "id": 2,
+           "name": "Vegetable", 
+           "userId": 1
+       }
+   }
+}
+
+### LIST
+POST http://localhost:9499/api/lists/create
+Content-Type: application/json
+Authorization: bearer Imtoken12345withnumberandletters156
+
+{
+   "list":{
+       "id": null,
+       "name": "list name",
+       "state": "EDITTING",
+       "items": []
+   }
 }

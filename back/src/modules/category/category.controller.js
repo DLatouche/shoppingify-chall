@@ -9,7 +9,15 @@ export default class CategoryController {
     res.send(await this.categoryService.create())
   }
 
-  async getCategoriesWithItems({ res }) {
-    res.send("OK")
+  async getCategoriesWithItems({ req, res }) {
+    try {
+      const categories = await this.categoryService.getCategoriesWithItems({
+        userId: req.user.id,
+      })
+      res.send({ categories })
+    } catch (error) {
+      console.log("%ccategory.controller.js -> 18 ERROR: error", "background: #FF0000; color:#FFFFFF", error)
+      res.status(500).send(error)
+    }
   }
 }

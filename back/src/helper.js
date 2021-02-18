@@ -5,10 +5,10 @@ const twoDigits = (d) => {
 }
 
 const toMySQLDate = (date) =>
-  `${date.getUTCFullYear()}-${twoDigits(1 + date.getUTCMonth())}-${twoDigits(
-    date.getUTCDate()
-  )} ${twoDigits(date.getUTCHours())}:${twoDigits(
-    date.getUTCMinutes()
-  )}:${twoDigits(date.getUTCSeconds())}`
+  `${date.getUTCFullYear()}-${twoDigits(1 + date.getUTCMonth())}-${twoDigits(date.getUTCDate())} ${twoDigits(
+    date.getUTCHours()
+  )}:${twoDigits(date.getUTCMinutes())}:${twoDigits(date.getUTCSeconds())}`
 
-export { twoDigits, toMySQLDate }
+const objToArray = (obj) => Object.keys(obj).map((key) => obj[key])
+
+export { twoDigits, toMySQLDate, objToArray }

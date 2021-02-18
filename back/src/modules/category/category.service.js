@@ -7,7 +7,15 @@ export default class CategoryService {
     this.categoryRepository = CategoryRepository
   }
 
-  create() {
-    return this.categoryRepository.insert()
+  create({ userId, category }) {
+    return this.categoryRepository.insert({ userId, category })
+  }
+
+  async getCategoriesWithItems({ userId }) {
+    console.log("category.service.js -> 15: userId", userId)
+    const categories = await this.categoryRepository.getCategoriesWithItems({
+      userId,
+    })
+    return categories
   }
 }

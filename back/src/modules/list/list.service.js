@@ -1,3 +1,4 @@
+import { toMySQLDate } from "../../helper"
 import ListRepository from "./list.repository"
 
 require("dotenv").config()
@@ -7,7 +8,8 @@ export default class ListService {
     this.listRepository = ListRepository
   }
 
-  create() {
-    return this.listRepository.insert()
+  async create({ userId, list }) {
+    const listToInsert = { ...list, createdAt: toMySQLDate(new Date()) }
+    return this.listRepository.insert({ userId, list: listToInsert })
   }
 }
