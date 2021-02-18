@@ -16,4 +16,19 @@ export default class ListController {
       res.status(500).send(error)
     }
   }
+
+  async update({ req, res }) {
+    try {
+      const { user } = req
+      const { list } = req.body
+      const updatedList = await this.listService.udpate({
+        userId: user.id,
+        list,
+      })
+      res.send({ list: updatedList })
+    } catch (error) {
+      console.log("%list.controller.js -> 12 ERROR: error", "background: #FF0000; color:#FFFFFF", error)
+      res.status(500).send(error)
+    }
+  }
 }

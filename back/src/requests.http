@@ -1,5 +1,5 @@
 ### USER
-POST http://localhost:9499/api/users/create
+POST http://localhost:9499/api/users/
 Content-Type: application/json
 
 {
@@ -17,7 +17,7 @@ Authorization: bearer Imtoken12345withnumberandletters156
 }
 
 ### ITEM
-POST http://localhost:9499/api/items/create
+POST http://localhost:9499/api/items/
 Content-Type: application/json
 Authorization: bearer Imtoken12345withnumberandletters156
 
@@ -36,15 +36,44 @@ Authorization: bearer Imtoken12345withnumberandletters156
 }
 
 ### LIST
-POST http://localhost:9499/api/lists/create
+PATCH http://localhost:9499/api/lists/
 Content-Type: application/json
 Authorization: bearer Imtoken12345withnumberandletters156
 
 {
    "list":{
-       "id": null,
-       "name": "list name",
+       "id": 4,
+       "name": "list name ed",
        "state": "EDITTING",
        "items": []
+   }
+}
+
+### 
+
+PATCH  http://localhost:9499/api/lists/
+Content-Type: application/json
+Authorization: bearer Imtoken12345withnumberandletters156
+
+{
+   "list":{
+       "id": 9,
+       "name": "list name with items",
+       "state": "EDITTING",
+       "items": [
+           {
+            "id": 70,
+            "name": "Brocolis",
+            "quantity": 5,
+            "isChecked": true,
+            "note": "", 
+            "image": "",
+            "category": {
+                "id": 2,
+                "name": "Vegetable", 
+                "userId": 1
+            }
+   }
+   ]
    }
 }

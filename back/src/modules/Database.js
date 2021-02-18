@@ -29,6 +29,33 @@ class DB {
       })
     })
   }
+
+  transaction({ queries }) {
+    return new Promise((resolve, reject) => {
+      const resultsTransaction = []
+      this.connection.beginTransaction((error) => {
+        if (error) reject(error)
+        queries.forEach((query) => {
+          this.connection.query(query.query, query.params, (err, results, fields) => {
+            if (err) {
+              return this.connection.rollback(() => {
+                throw err
+              })
+            }
+            resultsTransaction.push({ results, fields })
+          })
+        })
+        this.connection.commit((errCommit) => {
+          if (errCommit) {
+            return this.connection.rollback(() => {
+              throw errCommit
+            })
+          }
+          resolve(resultsTransaction)
+        })
+      })
+    })
+  }
 }
 
 const instance = new DB()

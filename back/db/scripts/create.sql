@@ -71,14 +71,14 @@ CREATE TABLE `list` (
 DROP TABLE IF EXISTS `list_item`;
 CREATE TABLE `list_item` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_list` int NOT NULL,
-  `id_item` int NOT NULL,
+  `list_id` int NOT NULL,
+  `item_id` int NOT NULL,
   `quantity` int NOT NULL DEFAULT '0',
   `is_checked` tinyint DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `fk_item_idx` (`id_item`),
-  KEY `fk_list_idx` (`id_list`),
-  CONSTRAINT `fk_item` FOREIGN KEY (`id_item`) REFERENCES `item` (`id`),
-  CONSTRAINT `fk_list` FOREIGN KEY (`id_list`) REFERENCES `list` (`id`)
+  KEY `fk_item_idx` (`item_id`),
+  KEY `fk_list_idx` (`list_id`),
+  CONSTRAINT `fk_item` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`),
+  CONSTRAINT `fk_list` FOREIGN KEY (`list_id`) REFERENCES `list` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

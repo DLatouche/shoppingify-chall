@@ -12,4 +12,8 @@ export default class ListService {
     const listToInsert = { ...list, createdAt: toMySQLDate(new Date()) }
     return this.listRepository.insert({ userId, list: listToInsert })
   }
+
+  async udpate({ userId, list }) {
+    return this.listRepository.update({ userId, list })
+  }
 }

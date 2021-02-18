@@ -5,7 +5,7 @@ import ItemController from "./item.controller"
 const itemRouter = express.Router()
 const itemController = new ItemController()
 
-itemRouter.post("/create", authenticateToken, (req, res) => {
+itemRouter.post("/", authenticateToken, (req, res) => {
   itemController.create({ req, res })
 })
 
