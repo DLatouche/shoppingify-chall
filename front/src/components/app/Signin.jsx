@@ -4,11 +4,13 @@ import Input from "../general/input/Input"
 import "./Signin.scss"
 import API from "../../utilities/API"
 import { useHistory } from "react-router-dom"
+import Dialog from "../general/dialog/Dialog"
 
-const Signin = () => {
+const Signin = ({ showToast }) => {
   const history = useHistory()
   const [key, setKey] = useState("")
-
+  const [newKey, setNewKey] = useState("")
+  const [open, setOpen] = useState(false)
   const onInputChange = (e, value) => {
     setKey(value)
   }
@@ -19,6 +21,10 @@ const Signin = () => {
       API.setToken(key)
       history.push("/")
     } else {
+      showToast({
+        text: `Key is incorrect`,
+        severity: "error",
+      })
       console.log("%cSignin.jsx -> 19 ERROR: Key not found", "background: #FF0000; color:#FFFFFF")
     }
   }
@@ -28,14 +34,33 @@ const Signin = () => {
     console.log("Signin.jsx -> 28: result", result)
     if (result.status === 200) {
       API.setToken(result.data.user.token)
-      history.push("/")
+      setNewKey(result.data.user.token)
+      setOpen(true)
     } else {
+      showToast({
+        text: `An error has occured`,
+        severity: "error",
+      })
       console.log("%cSignin.jsx -> 33 ERROR: Key not found", "background: #FF0000; color:#FFFFFF")
     }
   }
 
+  const onValid = () => {
+    history.push("/")
+  }
+
   return (
     <div className="signin">
+      <Dialog open={open} oneChoice={true} onValid={onValid} onCancel={onValid}>
+        <p className="signin__text__title">Your key is created</p>
+        <p className="signin__text">Your key are: {newKey}</p>
+        <p className="signin__text">
+          You can connect on Shoppingify with this link:{" "}
+          <a className="signin__link" href={"http://localhost:3000/?token=" + newKey}>
+            http://localhost:3000/?token={newKey}
+          </a>
+        </p>
+      </Dialog>
       <div className="signin__container">
         <div className="signin__container__bloc">
           <p className="signin__title">Shoppingify</p>

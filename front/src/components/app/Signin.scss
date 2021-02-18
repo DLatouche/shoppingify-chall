@@ -1,5 +1,22 @@
 @import "../../variables";
-
+.signin__text__title {
+  font-family: Quicksand;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0em;
+  padding: 10px 10px;
+}
+.signin__text {
+  font-family: Quicksand;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0em;
+  padding: 10px 10px;
+}
 .signin {
   display: flex;
   height: 100vh;
@@ -9,6 +26,9 @@
   background-color: #fafafe;
   font-family: Quicksand;
 
+  .signin__link {
+    color: $primary;
+  }
   .signin__container {
     border-radius: 12px;
     max-height: 500px;
