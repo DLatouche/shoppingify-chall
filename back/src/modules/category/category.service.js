@@ -12,8 +12,14 @@ export default class CategoryService {
   }
 
   async getCategoriesWithItems({ userId }) {
-    console.log("category.service.js -> 15: userId", userId)
     const categories = await this.categoryRepository.getCategoriesWithItems({
+      userId,
+    })
+    return categories
+  }
+
+  async getCategories({ userId }) {
+    const categories = await this.categoryRepository.getCategories({
       userId,
     })
     return categories

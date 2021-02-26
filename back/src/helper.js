@@ -1,3 +1,5 @@
+import { createPool } from "mysql"
+
 const twoDigits = (d) => {
   if (d >= 0 && d < 10) return `0${d.toString()}`
   if (d > -10 && d < 0) return `-0${(-1 * d).toString()}`
@@ -11,4 +13,6 @@ const toMySQLDate = (date) =>
 
 const objToArray = (obj) => Object.keys(obj).map((key) => obj[key])
 
-export { twoDigits, toMySQLDate, objToArray }
+const deepCopy = (obj) => JSON.parse(JSON.stringify(obj))
+
+export { twoDigits, toMySQLDate, objToArray, deepCopy }

@@ -8,7 +8,7 @@ import Dialog from "../general/dialog/Dialog"
 
 const Signin = ({ showToast }) => {
   const history = useHistory()
-  const [key, setKey] = useState("")
+  const [key, setKey] = useState("Imtoken12345withnumberandletters156")
   const [newKey, setNewKey] = useState("")
   const [open, setOpen] = useState(false)
   const onInputChange = (e, value) => {
@@ -19,7 +19,7 @@ const Signin = ({ showToast }) => {
     let result = await API.request({ url: "users/" + key, type: "GET" })
     if (result.status === 200) {
       API.setToken(key)
-      history.push("/")
+      history.push("/app/")
     } else {
       showToast({
         text: `Key is incorrect`,
@@ -46,7 +46,8 @@ const Signin = ({ showToast }) => {
   }
 
   const onValid = () => {
-    history.push("/")
+    setOpen(false)
+    history.push("/app/")
   }
 
   return (

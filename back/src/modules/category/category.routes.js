@@ -9,4 +9,12 @@ categoryRouter.get("/items", authenticateToken, (req, res) => {
   categoryController.getCategoriesWithItems({ req, res })
 })
 
+categoryRouter.post("/", authenticateToken, (req, res) => {
+  categoryController.create({ req, res })
+})
+
+categoryRouter.get("/", authenticateToken, (req, res) => {
+  categoryController.getCategories({ req, res })
+})
+
 module.exports = categoryRouter

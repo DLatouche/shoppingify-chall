@@ -1,29 +1,30 @@
 .asideAddItem {
-    background-color: #fafafe;
-    padding: 10px;
+  background-color: #fafafe;
+  padding: 10px;
+  height: 100%;
 
-    .asideAddItem__title {
-        font-family: Quicksand;
-        font-size: 24px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 30px;
-        letter-spacing: 0em;
-        margin: 20px 10px;
-    }
-    .asideAddItem__input {
-        margin: 30px 10px;
-    }
+  .asideAddItem__title {
+    font-family: Quicksand;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: 0em;
+    margin: 20px 10px;
+  }
+  .asideAddItem__input {
+    margin: 30px 10px;
+  }
 
-    .asideAddItem__select {
-        margin: 30px 10px;
-    }
+  .asideAddItem__select {
+    margin: 30px 10px;
+  }
 
-    .asideAddItem__actions {
-        display: flex;
-        justify-content: center;
-        .asideAddItem__actions__button {
-            margin: 20px;
-        }
+  .asideAddItem__actions {
+    display: flex;
+    justify-content: center;
+    .asideAddItem__actions__button {
+      margin: 20px;
     }
+  }
 }

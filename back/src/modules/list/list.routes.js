@@ -13,4 +13,8 @@ listRouter.patch("/", authenticateToken, (req, res) => {
   listController.update({ req, res })
 })
 
+listRouter.get("/", authenticateToken, (req, res) => {
+  listController.getLists({ req, res })
+})
+
 module.exports = listRouter

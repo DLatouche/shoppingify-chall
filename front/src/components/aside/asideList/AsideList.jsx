@@ -87,6 +87,8 @@ const AsideList = ({ className, list, setAside, updateList, createEmptyList }) =
 
   const updateItem = (item) => {
     let listUpdated = { ...list }
+    console.log("AsideList.jsx -> 90: item", item)
+    console.log("AsideList.jsx -> 91: list", list)
     let iCategory = getInclude(listUpdated.categories, (category) => category.id === item.category.id)
     let iItem = getInclude(listUpdated.categories[iCategory].items, (itm) => itm.id === item.id)
     listUpdated.categories[iCategory].items[iItem] = item
@@ -226,12 +228,6 @@ export const AsideListStore = ({ className }) => {
     return dispatch(createEmptyListAction())
   }, [dispatch])
 
-  if (!list) {
-    // create a new list
-    console.log("%cAsideList.jsx -> 170 RED: No list !", "background: #f44336; color:#FFFFFF")
-    let newList = { id: null, name: "", state: "EDITING", categories: [], date: new Date() }
-    createList(newList)
-  }
   return (
     <AsideList
       className={className}

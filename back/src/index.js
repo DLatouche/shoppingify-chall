@@ -24,7 +24,14 @@ const debug = (req, res, next) => {
     second: "2-digit",
     hour12: false,
   }
-  console.log(`Request ${nbRequests} at: `, new Date().toLocaleDateString("EN", options), "to ", req.originalUrl)
+  console.log(
+    `Request ${nbRequests} at: `,
+    new Date().toLocaleDateString("EN", options),
+    "to ",
+    req.method,
+    ": ",
+    req.originalUrl
+  )
   nbRequests += 1
   next()
 }

@@ -9,4 +9,11 @@ itemRouter.post("/", authenticateToken, (req, res) => {
   itemController.create({ req, res })
 })
 
+itemRouter.get("/", authenticateToken, (req, res) => {
+  itemController.getItems({ req, res })
+})
+
+itemRouter.delete("/", authenticateToken, (req, res) => {
+  itemController.deleteItem({ req, res })
+})
 module.exports = itemRouter

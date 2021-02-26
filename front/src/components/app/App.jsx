@@ -19,33 +19,26 @@ function App() {
   const showToast = useCallback(({ text, severity }) => {
     setOpenToast((prev) => ({ ...prev, open: true, text, severity }))
   }, [])
-  const fetch = async () => {
-    try {
-    } catch (e) {
-      console.log("%cApp.jsx -> 11 ERROR: e", "background: #FF0000; color:#FFFFFF", e)
-    }
-  }
 
   useEffect(() => {
-    if (API.getTokenFromURL()) {
-      console.log("App.jsx -> 22: key")
-      fetch()
+    let token = API.getToken()
+    if (token) {
+      history.push("/app/")
     } else {
-      history.push("/signin")
-      console.log("App.jsx -> 25: noKeyu")
+      history.push("/")
     }
   }, [])
 
   const routes = [
-    { path: "/", name: "App", Component: ContainerAppStore },
-    { path: "/signin", name: "Signin", Component: Signin },
+    { path: "/app", name: "App", Component: ContainerAppStore, exact: false },
+    { path: "/", name: "Signin", Component: Signin, exact: true },
   ]
 
   return (
     <Provider store={store}>
       <Toast open={stateToast.open} severity={stateToast.severity} message={stateToast.text} handleClose={closeToast} />
-      {routes.map(({ path, Component }) => (
-        <Route key={path} exact path={path}>
+      {routes.map(({ path, Component, exact }) => (
+        <Route key={path} exact={exact} path={path}>
           {({ match }) => (
             <CSSTransition in={match != null} timeout={300} classNames="fade" unmountOnExit>
               <Component showToast={showToast} />

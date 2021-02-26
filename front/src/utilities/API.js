@@ -19,15 +19,29 @@ class API {
     const params = window.location.search
     const urlParams = new URLSearchParams(params)
     const token = urlParams.get("token")
-    this.setToken(token)
     return token
   }
 
   getToken = () => {
-    this.setToken(localStorage.getItem("token"))
+    if (this.token) return this.token
+
+    let urlToken = this.getTokenFromURL()
+    if (urlToken) {
+      this.setToken(urlToken)
+      return this.token
+    }
+
+    let storageToken = localStorage.getItem("token")
+    if (storageToken !== "null") {
+      this.setToken(storageToken)
+      return this.token
+    }
+    this.token = null
+    return this.token
   }
 
   setToken = (token) => {
+    localStorage.setItem("token", token)
     this.token = token
   }
 

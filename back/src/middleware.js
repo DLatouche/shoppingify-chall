@@ -5,7 +5,7 @@ const authenticateToken = async (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1]
   if (!token) {
     console.log("middleware.js -> 9: No token")
-    return res.sendStatus(401)
+    throw new Error("Unauthorized")
   }
   try {
     const userService = new UserService()
@@ -15,10 +15,10 @@ const authenticateToken = async (req, res, next) => {
       req.user = user
       return next()
     }
-    return res.sendStatus(401).send("Unauthorized")
+    throw new Error("Unauthorized")
   } catch (error) {
     console.log("%cmiddleware.js -> 13 ERROR: e", "background: #FF0000; color:#FFFFFF", error)
-    return res.status(500).send(error)
+    throw error
   }
 }
 

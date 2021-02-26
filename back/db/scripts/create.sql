@@ -41,6 +41,7 @@ CREATE TABLE `item` (
   `name` varchar(256) NOT NULL,
   `note` longtext,
   `image` varchar(2048) DEFAULT NULL,
+  `deleted` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `fk_user_idx` (`user_id`),
   KEY `fk_category_idx` (`category_id`),

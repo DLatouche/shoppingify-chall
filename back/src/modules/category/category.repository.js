@@ -27,6 +27,29 @@ class CategoryRepository {
     }
   }
 
+  async getCategories({ userId }) {
+    try {
+      const query = `
+      SELECT DISTINCT  * FROM category WHERE user_id=?
+      `
+      const params = [userId]
+      const { results } = await DB.query({ query, params })
+      const categories = []
+      results.forEach((res) => {
+        categories.push(
+          new Category({
+            id: res.id,
+            name: res.name,
+          })
+        )
+      })
+      return categories
+    } catch (error) {
+      console.log("category.repository.js -> 48: error", error)
+      throw error
+    }
+  }
+
   async getCategoriesWithItems({ userId }) {
     try {
       const query = `
