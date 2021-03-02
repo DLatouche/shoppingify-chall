@@ -11,7 +11,7 @@ class API {
       this.url = "http://localhost:9499/"
       this.baseURL = this.url + "api/"
     } else {
-      this.url = "http://shop.zwerque.fr/"
+      this.url = "https://shop.zwerque.fr/"
       this.baseURL = this.url + "api/"
     }
     return API.instance
