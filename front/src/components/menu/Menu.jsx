@@ -10,7 +10,8 @@ import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { listsCancelledOrCompleted, listsSelector } from "../../redux/selectors/lists.selector"
 import { toggleDrawerAction } from "../../redux/actions/drawer.action"
-const Menu = ({ lists, toggleDrawer }) => {
+import { drawerSelector } from "../../redux/selectors/drawer.selector"
+const Menu = ({ lists, toggleDrawer, isOpened }) => {
   const [selected, setSelected] = useState(1)
   const [number, setNumber] = useState(0)
   const history = useHistory()
@@ -24,6 +25,9 @@ const Menu = ({ lists, toggleDrawer }) => {
     if (path === "/app/") setSelected(1)
     else if (path === "/app/history") setSelected(2)
     else setSelected(3)
+    if (useMenu) {
+      if (isOpened) toggleDrawer()
+    }
     history.push(path)
   }
 
@@ -96,12 +100,14 @@ const Menu = ({ lists, toggleDrawer }) => {
 
 const MenuStore = () => {
   const lists = useSelector(listsCancelledOrCompleted)
+  const drawer = useSelector(drawerSelector)
+
   const dispatch = useDispatch()
   const toggleDrawer = useCallback(() => {
     return dispatch(toggleDrawerAction())
   }, [dispatch])
 
-  return <Menu lists={lists} toggleDrawer={toggleDrawer} />
+  return <Menu lists={lists} toggleDrawer={toggleDrawer} isOpened={drawer} />
 }
 
 export default MenuStore

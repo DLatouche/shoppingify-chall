@@ -1,9 +1,9 @@
 export default class List {
-  constructor({ id, name, state, loginAt, categories }) {
+  constructor({ id, name, state, createdAt, categories }) {
     this.id = id
     this.name = name
     this.state = state
-    this.loginAt = loginAt
+    this.createdAt = createdAt
     this.categories = categories || []
   }
 }

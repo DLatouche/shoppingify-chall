@@ -1,229 +1,230 @@
 @import "../../../variables";
 
 .asideList {
-    background-color: #fff0de;
+  background-color: #fff0de;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: space-between;
+  .asideList__header {
+    background-color: $secondary;
+    border-radius: 24px;
+    width: calc(100% - 40px);
+    height: 130px;
+    margin: 40px 0 10px 0;
     display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    justify-content: space-between;
-    .asideList__header {
-        background-color: $secondary;
-        border-radius: 24px;
-        width: calc(100% - 40px);
-        height: 130px;
-        margin: 40px 0 10px 0;
-        display: flex;
-        position: relative;
-        .asideList__img {
-            position: absolute;
-            bottom: 20px;
-            left: 10px;
-        }
-        .asideList__header__container {
-            padding: 20px 20px 20px 40%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            .asideList__header__intro {
-                color: $light;
-                font-family: Quicksand;
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 700;
-                line-height: 20px;
-                letter-spacing: 0em;
-            }
-            .asideList__header__button {
-                align-self: start;
-            }
-        }
+    position: relative;
+    .asideList__img {
+      position: absolute;
+      bottom: 20px;
+      left: 10px;
     }
-
-    .asideList__body {
-        width: 100%;
-        height: 100%;
-        padding: 0 20px;
-        overflow-y: auto;
-        overflow-x: hidden;
-        .asideList__body__name {
-            margin-top: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            &--hidden {
-                display: none;
-            }
-            .asideList__body__name__text {
-                font-family: Quicksand;
-                font-size: 24px;
-                font-style: normal;
-                font-weight: 700;
-                line-height: 30px;
-                letter-spacing: 0em;
-                transform: scale(1);
-                transition: all 0.3s;
-
-                &--hidden {
-                    transform: scale(0);
-                }
-            }
-            .asideList__body__name__icon {
-                color: $dark;
-                transition: all 0.5s;
-                transform: scale(1);
-                margin-right: 20px;
-                &:hover {
-                    animation: write 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97);
-                    transform: scale($sizeScale);
-                    cursor: pointer;
-                }
-                &--hidden {
-                    transform: scale(0);
-                }
-            }
-        }
-        .asideList__body__list {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            .asideList__body__list__category {
-                padding-top: 30px;
-                display: grid;
-                .asideList__body__list__category__name {
-                    font-family: Quicksand;
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: 18px;
-                    letter-spacing: 0em;
-                    color: #828282;
-                    margin: 10px 0;
-                }
-                .asideList__body__list__category_items {
-                }
-            }
-        }
-        .asideList__body__noItem {
-            height: 80%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: auto;
-            .asideList__body__noItem__text {
-                font-family: Quicksand;
-                font-size: 20px;
-                font-style: normal;
-                font-weight: 700;
-                line-height: 25px;
-                letter-spacing: 0em;
-            }
-        }
+    .asideList__header__container {
+      padding: 20px 20px 20px 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .asideList__header__intro {
+        color: $light;
+        font-family: Quicksand;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        letter-spacing: 0em;
+      }
+      .asideList__header__button {
+        margin-top: 10px;
+        align-self: start;
+      }
     }
+  }
 
-    .asideList__footer {
-        background-color: $light;
-        position: relative;
-        padding: 30px 0;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .asideList__footer__action__button {
-            margin: 10px;
-        }
-        .asideList__footer__img {
-            display: none;
-        }
-        .asideList__footer__inputName {
-            border: 2px solid $primary;
-            border-radius: 12px;
-            .asideList__footer__inputName__input {
-                margin: 10px;
-                border: none;
-                font-family: Quicksand;
-                font-size: 14px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: 18px;
-                color: $dark;
-                &:disabled {
-                    background: transparent;
-                }
-                &::placeholder {
-                    font-family: Quicksand;
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: 18px;
-                    letter-spacing: 0em;
-                    color: #bdbdbd;
-                }
-            }
-            .asideList__footer__inputName__button {
-                background: $primary;
-                padding: 20px 25px;
-                margin-right: -2px;
-                &:hover {
-                    background: darken($primary, $hueDegree);
-                }
-            }
-        }
-        &--noItem {
-            .asideList__footer__inputName {
-                border: 2px solid #c1c1c4;
-                .asideList__footer__inputName__button {
-                    background: #c1c1c4;
-                    border-radius: 12px;
-                }
-            }
-            .asideList__footer__img {
-                display: block;
-                position: absolute;
-                transform: translateY(-100%);
-                top: 10px;
-            }
-        }
-    }
-
-    .asideList__waiting {
-        margin: 30px;
+  .asideList__body {
+    width: 100%;
+    height: 100%;
+    padding: 0 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    .asideList__body__name {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &--hidden {
+        display: none;
+      }
+      .asideList__body__name__text {
         font-family: Quicksand;
         font-size: 24px;
         font-style: normal;
         font-weight: 700;
         line-height: 30px;
         letter-spacing: 0em;
-        animation: fade 1s infinite;
+        transform: scale(1);
+        transition: all 0.3s;
+
+        &--hidden {
+          transform: scale(0);
+        }
+      }
+      .asideList__body__name__icon {
+        color: $dark;
+        transition: all 0.5s;
+        transform: scale(1);
+        margin-right: 20px;
+        &:hover {
+          animation: write 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+          transform: scale($sizeScale);
+          cursor: pointer;
+        }
+        &--hidden {
+          transform: scale(0);
+        }
+      }
     }
+    .asideList__body__list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      .asideList__body__list__category {
+        padding-top: 30px;
+        display: grid;
+        .asideList__body__list__category__name {
+          font-family: Quicksand;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 18px;
+          letter-spacing: 0em;
+          color: #828282;
+          margin: 10px 0;
+        }
+        .asideList__body__list__category_items {
+        }
+      }
+    }
+    .asideList__body__noItem {
+      height: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      .asideList__body__noItem__text {
+        font-family: Quicksand;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 25px;
+        letter-spacing: 0em;
+      }
+    }
+  }
+
+  .asideList__footer {
+    background-color: $light;
+    position: relative;
+    padding: 30px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .asideList__footer__action__button {
+      margin: 10px;
+    }
+    .asideList__footer__img {
+      display: none;
+    }
+    .asideList__footer__inputName {
+      border: 2px solid $primary;
+      border-radius: 12px;
+      .asideList__footer__inputName__input {
+        margin: 10px;
+        border: none;
+        font-family: Quicksand;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 18px;
+        color: $dark;
+        &:disabled {
+          background: transparent;
+        }
+        &::placeholder {
+          font-family: Quicksand;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 18px;
+          letter-spacing: 0em;
+          color: #bdbdbd;
+        }
+      }
+      .asideList__footer__inputName__button {
+        background: $primary;
+        padding: 20px 25px;
+        margin-right: -2px;
+        &:hover {
+          background: darken($primary, $hueDegree);
+        }
+      }
+    }
+    &--noItem {
+      .asideList__footer__inputName {
+        border: 2px solid #c1c1c4;
+        .asideList__footer__inputName__button {
+          background: #c1c1c4;
+          border-radius: 12px;
+        }
+      }
+      .asideList__footer__img {
+        display: block;
+        position: absolute;
+        transform: translateY(-100%);
+        top: 10px;
+      }
+    }
+  }
+
+  .asideList__waiting {
+    margin: 30px;
+    font-family: Quicksand;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: 0em;
+    animation: fade 1s infinite;
+  }
 }
 @keyframes fade {
-    100%,
-    0% {
-        opacity: 0.2;
-    }
-    50% {
-        opacity: 1;
-    }
+  100%,
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes write {
-    0% {
-        transform: rotate(4deg) scale(1);
-    }
-    33% {
-        transform: rotate(-4deg) scale($sizeScale);
-    }
+  0% {
+    transform: rotate(4deg) scale(1);
+  }
+  33% {
+    transform: rotate(-4deg) scale($sizeScale);
+  }
 
-    66% {
-        transform: rotate(4deg) scale($sizeScale);
-    }
+  66% {
+    transform: rotate(4deg) scale($sizeScale);
+  }
 
-    99% {
-        transform: rotate(-4deg) scale($sizeScale);
-    }
-    100% {
-        transform: rotate(1) scale($sizeScale);
-    }
+  99% {
+    transform: rotate(-4deg) scale($sizeScale);
+  }
+  100% {
+    transform: rotate(1) scale($sizeScale);
+  }
 }

@@ -44,7 +44,6 @@ const AsideList = ({ className, list, setAside, updateList, createEmptyList }) =
       updatedList.categories[indexCategogry].items.splice(indexItem, 1)
     }
     let result = await updateList(updatedList)
-    console.log("AsideList.jsx -> 36: result", result)
   }
 
   const onSave = async () => {
@@ -87,8 +86,6 @@ const AsideList = ({ className, list, setAside, updateList, createEmptyList }) =
 
   const updateItem = (item) => {
     let listUpdated = { ...list }
-    console.log("AsideList.jsx -> 90: item", item)
-    console.log("AsideList.jsx -> 91: list", list)
     let iCategory = getInclude(listUpdated.categories, (category) => category.id === item.category.id)
     let iItem = getInclude(listUpdated.categories[iCategory].items, (itm) => itm.id === item.id)
     listUpdated.categories[iCategory].items[iItem] = item
@@ -116,7 +113,7 @@ const AsideList = ({ className, list, setAside, updateList, createEmptyList }) =
               setAside("ADD_ITEM")
             }}
           >
-            Add item
+            <div>Add item</div>
           </Button>
         </div>
       </div>

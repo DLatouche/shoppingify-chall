@@ -8,7 +8,7 @@ import Dialog from "../general/dialog/Dialog"
 
 const Signin = ({ showToast }) => {
   const history = useHistory()
-  const [key, setKey] = useState("Imtoken12345withnumberandletters156")
+  const [key, setKey] = useState("")
   const [newKey, setNewKey] = useState("")
   const [open, setOpen] = useState(false)
   const onInputChange = (e, value) => {
@@ -57,8 +57,8 @@ const Signin = ({ showToast }) => {
         <p className="signin__text">Your key are: {newKey}</p>
         <p className="signin__text">
           You can connect on Shoppingify with this link:{" "}
-          <a className="signin__link" href={"http://localhost:3000/?token=" + newKey}>
-            http://localhost:3000/?token={newKey}
+          <a className="signin__link" href={API.getURL() + "token=" + newKey}>
+            {API.getURL()}token={newKey}
           </a>
         </p>
       </Dialog>

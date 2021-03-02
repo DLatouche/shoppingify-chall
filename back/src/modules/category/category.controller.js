@@ -8,7 +8,6 @@ export default class CategoryController {
   async create({ req, res }) {
     const { user } = req
     const { category } = req.body
-    console.log("category.controller.js -> 11: category", category)
     const newCategory = await this.categoryService.create({ userId: user.id, category })
     res.send({ category: newCategory })
   }

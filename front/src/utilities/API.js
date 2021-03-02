@@ -8,12 +8,16 @@ class API {
     }
     this.token = null
     if (process.env.NODE_ENV === "development") {
-      this.baseURL = "http://localhost:9499/api/"
+      this.url = "http://localhost:9499/"
+      this.baseURL = this.url + "api/"
     } else {
-      this.baseURL = ""
+      this.url = "http://shop.zwerque.fr/"
+      this.baseURL = this.url + "api/"
     }
     return API.instance
   }
+
+  getURL = () => this.url
 
   getTokenFromURL = () => {
     const params = window.location.search

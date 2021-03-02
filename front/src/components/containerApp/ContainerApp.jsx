@@ -15,6 +15,7 @@ import API from "../../utilities/API"
 import { setCategoriesAction } from "../../redux/actions/category.action"
 import { setListsAction } from "../../redux/actions/list.action"
 import { setItemsAction } from "../../redux/actions/item.action"
+import { colors } from "@material-ui/core"
 
 const routes = [
   { path: "/app/", name: "Items", Component: ItemsStore, exact: true },

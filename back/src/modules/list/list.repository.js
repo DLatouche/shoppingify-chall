@@ -19,7 +19,7 @@ class ListRepository {
         id: results.insertId,
         name: list.name,
         state: list.state,
-        createAt: list.createAt,
+        createdAt: list.createdAt,
       })
 
       if (list.categories && list.categories.length > 0) {
@@ -44,7 +44,6 @@ class ListRepository {
 
   async update({ userId, list }) {
     try {
-      console.log("list.repository.js -> 45: list", list)
       const query = `UPDATE list SET name=?, state=? WHERE id=? AND user_id=?`
       const params = [list.name, list.state, list.id, userId]
       await DB.query({ query, params })

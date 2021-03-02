@@ -7,9 +7,7 @@ export default class UserController {
 
   async create({ req, res }) {
     try {
-      console.log("user.controller.js -> 10: req.body", req.body)
       const newUser = await this.userService.create()
-      console.log("user.controller.js -> 11: newUser", newUser)
       res.send({ user: newUser })
     } catch (error) {
       console.log("%cuser.controller.js -> 12 ERROR: error", "background: #FF0000; color:#FFFFFF", error)
@@ -19,7 +17,6 @@ export default class UserController {
 
   async getUser({ req, res }) {
     const { token } = req.params
-    console.log("user.controller.js -> 21: req", req.params)
     if (!token) {
       return res.sendStatus(401)
     }
